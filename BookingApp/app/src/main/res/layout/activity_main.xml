@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/Log"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/Log"
+        android:text="log in"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="430dp" />
+
+    <Button
+        android:id="@+id/Sign"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:hint="@string/Sign"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <Switch
+        android:id="@+id/Instructor"
+        android:layout_width="134dp"
+        android:layout_height="42dp"
+        android:text="Instructor"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="298dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/password"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="170dp" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BookingApp</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="Log">Log in</string>
+    <string name="Sign">Sign up</string>
+    <string name="Welcome">Welcome</string>
+    <string name="DoSign">Sign</string>
+    <string name="Return">Return to main</string>
+    <string name="InputName">Input your account name</string>
+    <string name="InputPassword">Input your password</string>
+    <string name="modify">Confirm</string>
+    <string name="btn_delete">Delete</string>
+    <string name="deleteAccount">Delete Account</string>
+    <string name="deleteCourse">Delete Course</string>
+    <string name="create">Create Course</string>
+</resources>
