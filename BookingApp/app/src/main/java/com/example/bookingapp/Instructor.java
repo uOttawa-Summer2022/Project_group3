@@ -1,7 +1,7 @@
 package com.example.bookingapp;
 
 public class Instructor extends Account{
-    public Instructor(String user_name, String password, Enum type) {
-        super(user_name, password, type);
+    public Instructor(String instructorName, String password) {
+        super(instructorName, password, Enum.INSTRUCTOR);
     }
 }
