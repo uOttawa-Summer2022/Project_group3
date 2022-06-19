@@ -7,30 +7,34 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/SignStudent"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:hint="@string/Sign"
+        android:text="@string/SignUpStudent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="535dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/SignInstructor"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:hint="@string/Sign"
+        android:text="@string/SignUpInstructor"
+        tools:layout_editor_absoluteX="211dp"
+        tools:layout_editor_absoluteY="535dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
         android:id="@+id/Log"
-        android:layout_width="256dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Log"
         android:text="log in"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="430dp" />
-
-    <Button
-        android:id="@+id/Sign"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:text="Sign up"
-        android:hint="@string/Sign"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="382dp" />
-
-    <Switch
-        android:id="@+id/Instructor"
-        android:layout_width="134dp"
-        android:layout_height="42dp"
-        android:text="Instructor"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="298dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="600dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/password"
@@ -40,7 +44,8 @@
         android:inputType="textPersonName"
         android:hint="@string/password"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="170dp" />
+        tools:layout_editor_absoluteY="170dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/username"
@@ -51,6 +56,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="115dp" />
+        tools:layout_editor_absoluteY="115dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,4 +21,6 @@
     <string name="EditByCode">Edit By Code</string>
     <string name="CourseManage">Course Manage:</string>
     <string name="AccountManage">Account Manage:</string>
+    <string name="SignUpStudent">Sign Up As Student</string>
+    <string name="SignUpInstructor">Sign Up As Instructor</string>
 </resources>
