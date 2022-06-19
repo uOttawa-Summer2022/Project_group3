@@ -36,6 +36,7 @@ public class AdminActivity extends AppCompatActivity {
         delAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String accNameS = accountName.getText().toString();
 
             }
         });
@@ -43,7 +44,8 @@ public class AdminActivity extends AppCompatActivity {
         delCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String CCodeS = CourseCode.getText().toString();
+                cdb.deleteCourse(CCodeS);
             }
         });
 

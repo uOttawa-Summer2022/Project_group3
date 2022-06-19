@@ -1,4 +1,5 @@
 package com.example.bookingapp;
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -70,7 +71,7 @@ public class CourseDb extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             String codeStr = cursor.getString(0);
             result = true;
-            db.delete(TABLE_NAME, COLUMN_NAME + "=?", new String[]{codeStr});
+            db.delete(TABLE_NAME, COLUMN_CODE + "=?", new String[]{codeStr});
             cursor.close();
         }
         db.close();
@@ -78,6 +79,7 @@ public class CourseDb extends SQLiteOpenHelper {
     }
 
     
+    @SuppressLint("Range")
     public ArrayList<String> findAllCourses() {
         ArrayList<String> listOfCourses = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
