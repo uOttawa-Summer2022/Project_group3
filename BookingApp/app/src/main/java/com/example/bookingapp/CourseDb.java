@@ -89,7 +89,7 @@ public class CourseDb extends SQLiteOpenHelper {
 
         cursor.close();
         db.close();
-        return values;
+        return listOfCourses;
     }
 
 }
