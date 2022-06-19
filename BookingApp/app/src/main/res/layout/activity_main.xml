@@ -1,62 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/SignStudent"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:hint="@string/Sign"
-        android:text="@string/SignUpStudent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="535dp"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/SignInstructor"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:hint="@string/Sign"
-        android:text="@string/SignUpInstructor"
-        tools:layout_editor_absoluteX="211dp"
-        tools:layout_editor_absoluteY="535dp"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/Log"
+    <EditText
+        android:id="@+id/firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/Log"
-        android:text="log in"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="600dp"
-        tools:ignore="MissingConstraints" />
+        android:hint="First Name"
+        android:layout_marginTop="50dp"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/lastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/password"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="170dp"
-        tools:ignore="MissingConstraints" />
+        android:hint="Last Name"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/firstname"/>
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="115dp"
-        tools:ignore="MissingConstraints" />
+        android:hint="User Name"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/lastname"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/username"/>
+
+    <RadioGroup
+        android:id="@+id/role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/password" >
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose your role:" />
+
+        <RadioButton
+            android:id="@+id/role_instructor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instructor" />
+
+        <RadioButton
+            android:id="@+id/role_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Student"
+            />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnsignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/role"/>
+
+    <Button
+        android:id="@+id/btnsignin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Existing user! Go to Sign in page"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/btnsignup"/>
+
+</RelativeLayout>
