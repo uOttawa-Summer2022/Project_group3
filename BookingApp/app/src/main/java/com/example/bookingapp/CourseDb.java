@@ -74,5 +74,22 @@ public class CourseDb extends SQLiteOpenHelper {
         return result;
     }
 
-    //need to impelement find all courses
+    
+    public ArrayList<String> findAllCourses() {
+        ArrayList<String> listOfCourses = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()) {
+            do {
+                listOfCourses.add(cursor.getString(cursor.getColumnIndex("value")));
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return values;
+    }
+
 }
