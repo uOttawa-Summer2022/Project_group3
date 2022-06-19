@@ -17,10 +17,13 @@
     <string name="CourseName">Course Name</string>
     <string name="AccountName">Account Name</string>
     <string name="CourseCode">Course Code</string>
-    <string name="EditByName">Edit by Name</string>
-    <string name="EditByCode">Edit By Code</string>
     <string name="CourseManage">Course Manage:</string>
     <string name="AccountManage">Account Manage:</string>
     <string name="SignUpStudent">Sign Up As Student</string>
     <string name="SignUpInstructor">Sign Up As Instructor</string>
+    <string name="NewCourseName">New Course Name</string>
+    <string name="NewCourseCode">New Course Code</string>
+    <string name="Edit">Edit</string>
+    <string name="EditByCode">Edit By Code</string>
+    <string name="EditByName">Edit By Name</string>
 </resources>

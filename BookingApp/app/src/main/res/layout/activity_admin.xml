@@ -6,7 +6,7 @@
 
 
     <Button
-        android:id="@+id/btn_deleteAccount"
+        android:id="@+id/DelAcc"
         android:layout_width="170dp"
         android:layout_height="54dp"
         android:text="@string/deleteAccount"
@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="131dp" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/LogOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -23,7 +23,7 @@
         tools:layout_editor_absoluteY="647dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/AccName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -34,7 +34,7 @@
         tools:layout_editor_absoluteY="77dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/Course_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -44,7 +44,7 @@
         tools:layout_editor_absoluteY="289dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/Course_Code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -54,47 +54,39 @@
         tools:layout_editor_absoluteY="334dp" />
 
     <Button
-        android:id="@+id/btn_deleteCourse"
+        android:id="@+id/DelCourse"
         android:layout_width="173dp"
         android:layout_height="53dp"
         android:text="@string/deleteCourse"
         tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="386dp" />
+        tools:layout_editor_absoluteY="499dp" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="173dp"
-        android:layout_height="53dp"
-        android:text="@string/EditByName"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="454dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="173dp"
-        android:layout_height="53dp"
-        android:text="@string/EditByCode"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="454dp" />
-
-    <Button
-        android:id="@+id/btn_createCourse"
+        android:id="@+id/CreateCourse"
         android:layout_width="173dp"
         android:layout_height="53dp"
         android:text="@string/create"
         tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="386dp" />
+        tools:layout_editor_absoluteY="499dp" />
+
+    <Button
+        android:id="@+id/EditByName"
+        android:layout_width="173dp"
+        android:layout_height="53dp"
+        android:text="@string/EditByName"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="567dp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/CourseManage"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="259dp"
-        android:textSize="20dp"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="20dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="219dp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -106,6 +98,45 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="50dp" />
+
+    <EditText
+        android:id="@+id/NewCourseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/NewCourseName"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="394dp" />
+
+    <EditText
+        android:id="@+id/NewCourseCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/NewCourseCode"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="439dp" />
+
+    <Button
+        android:id="@+id/EditByCode"
+        android:layout_width="173dp"
+        android:layout_height="53dp"
+        android:text="@string/EditByCode"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="567dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please Use The Course Code To Delete Courses."
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="258dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
