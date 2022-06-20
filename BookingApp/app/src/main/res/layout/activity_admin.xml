@@ -33,8 +33,8 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="9dp"
         android:ems="10"
+        android:hint="@string/AccountName"
         android:inputType="textPersonName"
-        android:text="@string/AccountName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:ignore="MissingConstraints" />
@@ -46,8 +46,8 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="9dp"
         android:ems="10"
+        android:hint="@string/CourseName"
         android:inputType="textPersonName"
-        android:text="@string/CourseName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -55,18 +55,19 @@
         android:id="@+id/Course_Code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
         android:ems="10"
+        android:hint="@string/CourseCode"
         android:inputType="textPersonName"
-        android:text="@string/CourseCode"
-        app:layout_constraintTop_toBottomOf="@+id/Course_Name"
-        tools:layout_editor_absoluteX="21dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Course_Name" />
 
     <Button
         android:id="@+id/DelCourse"
         android:layout_width="173dp"
         android:layout_height="53dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="31dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
         android:text="@string/deleteCourse"
         app:layout_constraintBottom_toTopOf="@+id/EditByName"
@@ -89,9 +90,11 @@
         android:layout_width="173dp"
         android:layout_height="53dp"
         android:layout_marginStart="21dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="27dp"
         android:text="@string/EditByName"
         app:layout_constraintBottom_toTopOf="@+id/LogOut"
+        app:layout_constraintEnd_toStartOf="@+id/EditByCode"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -99,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="16dp"
         android:text="@string/CourseManage"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -112,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="26dp"
         android:text="@string/AccountManage"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -129,8 +132,8 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="15dp"
         android:ems="10"
+        android:hint="@string/NewCourseName"
         android:inputType="textPersonName"
-        android:text="@string/NewCourseName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Course_Code" />
 
@@ -140,8 +143,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
         android:ems="10"
+        android:hint="@string/NewCourseCode"
         android:inputType="textPersonName"
-        android:text="@string/NewCourseCode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NewCourseName" />
 

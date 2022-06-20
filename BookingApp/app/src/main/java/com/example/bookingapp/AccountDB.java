@@ -12,12 +12,12 @@ public class AccountDB extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Accounts.db";
 
-    //private static final String TABLE_NAME = "users";
-    //private static final String COLUMN_fNAME = "firstname";
-    //private static final String COLUMN_lNAME = "lastname";
-    //private static final String COLUMN_uNAME = "username";
-    //private static final String COLUMN_PASSWORD = "password";
-    //private static final String COLUMN_ROLE = "role";
+    private static final String TABLE_NAME = "users";
+    private static final String COLUMN_fNAME = "firstname";
+    private static final String COLUMN_lNAME = "lastname";
+    private static final String COLUMN_uNAME = "username";
+    private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_ROLE = "role";
 
     public AccountDB(Context context){
         super(context, DATABASE_NAME,null,1);
@@ -109,8 +109,8 @@ public class AccountDB extends SQLiteOpenHelper {
 
     //Admin Methods - Previously Made ....
 
-    public Account findAccount(String name) {
-        Account account =new Account();
+    public com.example.bookingapp.Account findAccount(String name) {
+        com.example.bookingapp.Account account =new com.example.bookingapp.Account();
         SQLiteDatabase db = this.getWritableDatabase();
         String likeName = name + "%";
         String query = "SELECT * FROM users WHERE firstname LIKE likeName";
@@ -119,7 +119,7 @@ public class AccountDB extends SQLiteOpenHelper {
 
             account.setUser_name(name);
             account.setPassword(cursor.getString(1));
-            account.setType(Enum.valueOf(cursor.getString(2)) );
+            account.setType(com.example.bookingapp.Enum.valueOf(cursor.getString(2)) );
             cursor.close();
             db.close();
             return account;
@@ -132,10 +132,10 @@ public class AccountDB extends SQLiteOpenHelper {
     public boolean deleteAccount(String name){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM users WHERE firstname == firstname";
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_uNAME + " = \"" + name + "\"";
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.moveToFirst()){
-            String nameStr = cursor.getString(0);
+            String nameStr = cursor.getString(2);
             result = true;
             db.delete("users", "firstname" + "=?", new String[]{nameStr});
             cursor.close();
