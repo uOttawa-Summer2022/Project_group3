@@ -32,12 +32,19 @@ public class CourseDb extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
-    public void AddCourse(Course course){
+    public Boolean AddCourse(com.example.bookingapp.Course course){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_NAME, course.getName());
         contentValues.put(COLUMN_CODE, course.getCode());
-        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put(COLUMN_NAME, course.getName());
+
+        long result = db.insert(TABLE_NAME,null,contentValues);
+
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
     public Boolean EditCourse(String text, boolean useName, String newName , String newCode){
         boolean result = false;
@@ -62,7 +69,7 @@ public class CourseDb extends SQLiteOpenHelper {
         return result;
     }
 
-    
+
     public boolean deleteCourse(String code){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -71,14 +78,14 @@ public class CourseDb extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             String codeStr = cursor.getString(0);
             result = true;
-            db.delete(TABLE_NAME, COLUMN_CODE + "=?", new String[]{codeStr});
+            db.delete(TABLE_NAME, COLUMN_NAME + "=?", new String[]{codeStr});
             cursor.close();
         }
         db.close();
         return result;
     }
 
-    
+
     @SuppressLint("Range")
     public ArrayList<String> findAllCourses() {
         ArrayList<String> listOfCourses = new ArrayList<String>();

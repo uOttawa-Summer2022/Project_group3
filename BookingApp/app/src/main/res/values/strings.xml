@@ -15,7 +15,7 @@
     <string name="deleteCourse">Delete Course</string>
     <string name="create">Create Course</string>
     <string name="CourseName">Course Name</string>
-    <string name="AccountName">Account Name</string>
+    <string name="AccountName">Account user Name</string>
     <string name="CourseCode">Course Code</string>
     <string name="CourseManage">Course Manage:</string>
     <string name="AccountManage">Account Manage:</string>

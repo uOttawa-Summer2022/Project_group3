@@ -1,111 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <Button
-        android:id="@+id/btn_deleteAccount"
+        android:id="@+id/DelAcc"
         android:layout_width="170dp"
         android:layout_height="54dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="2dp"
         android:text="@string/deleteAccount"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="131dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AccName" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/LogOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
         android:gravity="center"
         android:text="Click here to log out"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="647dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="29dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/AccName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="9dp"
         android:ems="10"
+        android:hint="@string/AccountName"
         android:inputType="textPersonName"
-        android:text="@string/AccountName"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="77dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/Course_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="9dp"
         android:ems="10"
+        android:hint="@string/CourseName"
         android:inputType="textPersonName"
-        android:text="@string/CourseName"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="289dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/Course_Code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
         android:ems="10"
+        android:hint="@string/CourseCode"
         android:inputType="textPersonName"
-        android:text="@string/CourseCode"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="334dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Course_Name" />
 
     <Button
-        android:id="@+id/btn_deleteCourse"
+        android:id="@+id/DelCourse"
         android:layout_width="173dp"
         android:layout_height="53dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/deleteCourse"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintBottom_toTopOf="@+id/EditByName"
+        app:layout_constraintEnd_toStartOf="@+id/CreateCourse"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/CreateCourse"
         android:layout_width="173dp"
         android:layout_height="53dp"
-        android:text="@string/EditByName"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="454dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="173dp"
-        android:layout_height="53dp"
-        android:text="@string/EditByCode"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="454dp" />
-
-    <Button
-        android:id="@+id/btn_createCourse"
-        android:layout_width="173dp"
-        android:layout_height="53dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/create"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintBottom_toTopOf="@+id/EditByCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DelCourse" />
+
+    <Button
+        android:id="@+id/EditByName"
+        android:layout_width="173dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="27dp"
+        android:text="@string/EditByName"
+        app:layout_constraintBottom_toTopOf="@+id/LogOut"
+        app:layout_constraintEnd_toStartOf="@+id/EditByCode"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
         android:text="@string/CourseManage"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="259dp"
-        android:textSize="20dp"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DelAcc" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="26dp"
         android:text="@string/AccountManage"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="50dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/NewCourseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/NewCourseName"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Course_Code" />
+
+    <EditText
+        android:id="@+id/NewCourseCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:hint="@string/NewCourseCode"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NewCourseName" />
+
+    <Button
+        android:id="@+id/EditByCode"
+        android:layout_width="173dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="27dp"
+        android:text="@string/EditByCode"
+        app:layout_constraintBottom_toTopOf="@+id/LogOut"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="12dp"
+        android:text="Please Use The Course Code To Delete Courses."
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

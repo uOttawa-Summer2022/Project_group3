@@ -2,6 +2,7 @@ package com.example.bookingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,8 @@ import android.widget.Toast;
 public class AdminActivity extends AppCompatActivity {
     EditText accountName, CourseName, CourseCode, newCourseName, newCourseCode;
     Button delAcc, delCourse, createCourse, editByName, editByCode, logOut;
-    CourseDb cdb;
+    com.example.bookingapp.CourseDb cdb;
+    com.example.bookingapp.AccountDB adb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +32,20 @@ public class AdminActivity extends AppCompatActivity {
 
         logOut = findViewById(R.id.LogOut);
 
-        cdb = new CourseDb(this);
-
+        cdb = new com.example.bookingapp.CourseDb(this);
+        adb=new com.example.bookingapp.AccountDB(this);
 
         delAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String accNameS = accountName.getText().toString();
 
+                String accNameS = accountName.getText().toString();
+                boolean result=adb.deleteAccount(accNameS);
+                if(result){
+                    Toast.makeText(AdminActivity.this, "Delete successful", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(AdminActivity.this, "Delete unsuccessful", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -45,7 +53,13 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String CCodeS = CourseCode.getText().toString();
-                cdb.deleteCourse(CCodeS);
+
+                boolean result=cdb.deleteCourse(CCodeS);
+                if(result){
+                    Toast.makeText(AdminActivity.this, "Delete successful", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(AdminActivity.this, "Delete unsuccessful", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -54,7 +68,12 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String CNameS = CourseName.getText().toString();
                 String CCodeS = CourseCode.getText().toString();
-                cdb.AddCourse(new Course(CNameS,CCodeS));
+                boolean result =cdb.AddCourse(new com.example.bookingapp.Course(CCodeS,CNameS));
+                if(result){
+                    Toast.makeText(AdminActivity.this, "Add successful", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(AdminActivity.this, "Add unsuccessful", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -83,6 +102,7 @@ public class AdminActivity extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), com.example.bookingapp.MainActivity.class));
 
             }
         });

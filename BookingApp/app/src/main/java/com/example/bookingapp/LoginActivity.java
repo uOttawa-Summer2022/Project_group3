@@ -39,61 +39,39 @@ public class LoginActivity extends AppCompatActivity {
                 String firstname = db.getFirstNameWithUser(user);
                 String role = db.getRoleWithUser(user);
 
-                if (role.equals("admin")){
-                    if (user.equals("") || pass.equals("")) {
-                        Toast.makeText(LoginActivity.this, "Please enter all the missing fields ...", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Boolean validUserAndPass = db.checkUsernameAndPassword(user, pass);
-                        if (validUserAndPass == true) {
+                if (user.equals("") || pass.equals("")){
+                    Toast.makeText(LoginActivity.this, "Please enter all the missing fields ...", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Boolean validUserAndPass = db.checkUsernameAndPassword(user, pass);
+                    if (validUserAndPass == true){
+                        if (role.equals("admin")){
                             Toast.makeText(LoginActivity.this, "Successfully Signed In!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                             startActivity(intent);
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Invalid Credentials, please try again!", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                }
-                else if (role.equals("Instructor")) {
-                    if (user.equals("") || pass.equals("")) {
-                        Toast.makeText(LoginActivity.this, "Please enter all the missing fields", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Boolean validUserAndPass = db.checkUsernameAndPassword(user, pass);
-                        if (validUserAndPass == true) {
+                        else if (role.equals("Instructor")){
                             Toast.makeText(LoginActivity.this, "Successfully Signed In!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), InstructorActivity.class);
                             intent.putExtra("firstName", firstname);
                             intent.putExtra("userName", user);
                             intent.putExtra("role", role);
                             startActivity(intent);
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Invalid Credentials, please try again!", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                }
-                else {
-                    if (user.equals("") || pass.equals("")) {
-                        Toast.makeText(LoginActivity.this, "Please enter all the missing fields", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Boolean validUserAndPass = db.checkUsernameAndPassword(user, pass);
-                        if (validUserAndPass == true) {
+                        else{
                             Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
                             intent.putExtra("firstName", firstname);
                             intent.putExtra("userName", user);
                             intent.putExtra("role", role);
                             startActivity(intent);
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Invalid Credentials, please try again!", Toast.LENGTH_SHORT).show();
                         }
                     }
-
+                    else{
+                        Toast.makeText(LoginActivity.this, "Invalid Credentials, please try again!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
             }
         });
-
-
     }
-
-
 }
