@@ -1,4 +1,5 @@
 package com.example.bookingapp;
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -31,34 +32,44 @@ public class CourseDb extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
-    public void AddCourse(Course course){
+    public Boolean AddCourse(Course course){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_NAME, course.getName());
         contentValues.put(COLUMN_CODE, course.getCode());
-        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put(COLUMN_NAME, course.getName());
+
+        long result = db.insert(TABLE_NAME,null,contentValues);
+
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
-    public Boolean EditCourse(Course course, String newName , String newCode){
+    public Boolean EditCourse(String text, boolean useName, String newName , String newCode){
         boolean result = false;
+        text = text.trim();
+        String col = COLUMN_CODE;
+        if(useName){
+            col = COLUMN_NAME;
+        }
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + course.getCode() + "\"";
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " = \"" + text + "\"";
         Cursor cursor = db.rawQuery(query, null);
-        if(cursor.moveToFirst()){
+        if(cursor.moveToFirst()) {
             result = true;
-            db.delete(TABLE_NAME, COLUMN_NAME + "=?", new String[]{course.getCode()});
+            db.delete(TABLE_NAME, col + "=?", new String[]{text});
             ContentValues contentValues = new ContentValues();
             contentValues.put(COLUMN_NAME, newName);
             contentValues.put(COLUMN_CODE, newCode);
-            db.insert(TABLE_NAME,null,contentValues);
-            course.setName(newName);
-            course.setCode(newCode);
+            db.insert(TABLE_NAME, null, contentValues);
             cursor.close();
         }
         db.close();
         return result;
     }
 
-    
+
     public boolean deleteCourse(String code){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -74,5 +85,23 @@ public class CourseDb extends SQLiteOpenHelper {
         return result;
     }
 
-    //need to impelement find all courses
+    
+    @SuppressLint("Range")
+    public ArrayList<String> findAllCourses() {
+        ArrayList<String> listOfCourses = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()) {
+            do {
+                listOfCourses.add(cursor.getString(cursor.getColumnIndex("value")));
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return listOfCourses;
+    }
+
 }
