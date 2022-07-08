@@ -28,11 +28,13 @@
     <string name="Welcome">Welcome</string>
     <string name="app_name">BookingApp</string>
     <string name="btn_delete">Delete</string>
+    <string name="click_screen_to_continue">Click Screen to Continue</string>
     <string name="create">Create Course</string>
     <string name="deleteAccount">Delete Account</string>
     <string name="deleteCourse">Delete Course</string>
     <string name="modify">Confirm</string>
     <string name="password">Password</string>
+    <string name="placeholder">PlaceHolder</string>
     <string name="username">Username</string>
     <style name="Theme.BookingApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         

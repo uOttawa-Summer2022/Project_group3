@@ -26,4 +26,6 @@
     <string name="Edit">Edit</string>
     <string name="EditByCode">Edit By Code</string>
     <string name="EditByName">Edit By Name</string>
+    <string name="placeholder">PlaceHolder</string>
+    <string name="click_screen_to_continue">Click Screen to Continue</string>
 </resources>

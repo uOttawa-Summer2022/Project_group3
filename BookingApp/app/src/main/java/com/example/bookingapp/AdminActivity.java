@@ -33,7 +33,7 @@ public class AdminActivity extends AppCompatActivity {
         logOut = findViewById(R.id.LogOut);
 
         cdb = new com.example.bookingapp.CourseDb(this);
-        adb=new com.example.bookingapp.AccountDB(this);
+        adb = new com.example.bookingapp.AccountDB(this);
 
         delAcc.setOnClickListener(new View.OnClickListener() {
             @Override

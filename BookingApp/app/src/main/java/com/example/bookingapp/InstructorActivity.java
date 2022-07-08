@@ -21,7 +21,7 @@ public class InstructorActivity extends AppCompatActivity {
         String uName = intent.getStringExtra("userName");
         String role = intent.getStringExtra("role");
 
-        String message = "Welcome " + fName + "/" + uName + "! You are logged in as " + role;
+        String message = "Welcome1111" + fName + "/" + uName + "! You are logged in as " + role;
 
         welcomeMsg = (TextView) findViewById(R.id.welcomeMsg);
         welcomeMsg.setText(message);

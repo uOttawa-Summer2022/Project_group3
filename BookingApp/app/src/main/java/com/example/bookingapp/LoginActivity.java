@@ -45,27 +45,13 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Boolean validUserAndPass = db.checkUsernameAndPassword(user, pass);
                     if (validUserAndPass == true){
-                        if (role.equals("admin")){
-                            Toast.makeText(LoginActivity.this, "Successfully Signed In!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
-                            startActivity(intent);
-                        }
-                        else if (role.equals("Instructor")){
-                            Toast.makeText(LoginActivity.this, "Successfully Signed In!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), InstructorActivity.class);
-                            intent.putExtra("firstName", firstname);
-                            intent.putExtra("userName", user);
-                            intent.putExtra("role", role);
-                            startActivity(intent);
-                        }
-                        else{
-                            Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
-                            intent.putExtra("firstName", firstname);
-                            intent.putExtra("userName", user);
-                            intent.putExtra("role", role);
-                            startActivity(intent);
-                        }
+                        Toast.makeText(LoginActivity.this, "Successfully Signed In!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                        intent.putExtra("firstName", firstname);
+                        intent.putExtra("userName", user);
+                        intent.putExtra("role", role);
+                        startActivity(intent);
+
                     }
                     else{
                         Toast.makeText(LoginActivity.this, "Invalid Credentials, please try again!", Toast.LENGTH_SHORT).show();

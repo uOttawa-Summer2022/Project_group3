@@ -49,22 +49,24 @@ public class MainActivity extends AppCompatActivity {
                 String ln = lastname.getText().toString();
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-
+                String role;
                 if(role_instructor.isChecked()) {
-                    String rlI = role_instructor.getText().toString();
-
-                    if (fn.equals("") || ln.equals("") || user.equals("") || pass.equals("") || rlI.equals("")){
+                     role = role_instructor.getText().toString();
+                }else {
+                     role = role_student.getText().toString();
+                }
+                    if (fn.equals("") || ln.equals("") || user.equals("") || pass.equals("") || role.equals("")){
                         Toast.makeText(MainActivity.this, "Please enter all the missing fields ...", Toast.LENGTH_SHORT).show();
                     } else{
                         Boolean validUser = db.checkUsername(user);
                         if(validUser==false){
-                            Boolean insert = db.addAccount(fn, ln, user, pass, rlI);
+                            Boolean insert = db.addAccount(fn, ln, user, pass, role);
                             if(insert==true){
                                 Toast.makeText(MainActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), com.example.bookingapp.InstructorActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                                 intent.putExtra("firstName", fn);
                                 intent.putExtra("userName", user);
-                                intent.putExtra("role", rlI);
+                                intent.putExtra("role", role);
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(MainActivity.this, "Registration failed ...", Toast.LENGTH_SHORT).show();
@@ -73,31 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "User already exists! Please sign in ...", Toast.LENGTH_SHORT).show();
                         }
                     }
-                } else{
-                    String rlS = role_student.getText().toString();
 
-                    if (fn.equals("") || ln.equals("") || user.equals("") || pass.equals("") || rlS.equals("")){
-                        Toast.makeText(MainActivity.this, "Please enter all the missing fields ...", Toast.LENGTH_SHORT).show();
-                    } else{
-                        Boolean validUser = db.checkUsername(user);
-                        if(validUser==false){
-                            Boolean insert = db.addAccount(fn, ln, user, pass, rlS);
-                            if(insert==true){
-                                Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), com.example.bookingapp.StudentActivity.class);
-                                intent.putExtra("firstName", fn);
-                                intent.putExtra("userName", user);
-                                intent.putExtra("role", rlS);
-                                startActivity(intent);
-                            }else{
-                                Toast.makeText(MainActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
-                            }
-                        } else{
-                            Toast.makeText(MainActivity.this, "User already exists! Please sign in ...", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                }
 
             }
         });

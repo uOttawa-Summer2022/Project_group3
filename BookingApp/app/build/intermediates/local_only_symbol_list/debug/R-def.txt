@@ -28,9 +28,11 @@ id header
 id lastname
 id password
 id password1
+id plzClick
 id role
 id role_instructor
 id role_student
+id screenBtn
 id textView
 id textView5
 id textView6
@@ -67,11 +69,13 @@ string SignUpStudent
 string Welcome
 string app_name
 string btn_delete
+string click_screen_to_continue
 string create
 string deleteAccount
 string deleteCourse
 string modify
 string password
+string placeholder
 string username
 style Theme.BookingApp
 xml backup_rules

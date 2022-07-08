@@ -2873,6 +2873,7 @@ id pathRelative
 id peekHeight
 id percent
 id pin
+id plzClick
 id position
 id postLayout
 id progress_circular
@@ -2895,6 +2896,7 @@ id save_overlay_view
 id sawtooth
 id scale
 id screen
+id screenBtn
 id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -3280,6 +3282,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string click_screen_to_continue
 string create
 string deleteAccount
 string deleteCourse
@@ -3369,6 +3372,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string placeholder
 string search_menu_title
 string status_bar_notification_info_overflow
 string username
