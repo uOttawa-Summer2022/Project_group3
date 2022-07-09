@@ -26,4 +26,19 @@
     <string name="Edit">Edit</string>
     <string name="EditByCode">Edit By Code</string>
     <string name="EditByName">Edit By Name</string>
+    <string name="search">Search</string>
+    <string name="viewAllCrs">View All</string>
+    <string name="CourseAssi">Course Assignment</string>
+    <string name="modifyCrs">Modify Course</string>
+    <string name="VerifyAssign">Check Assignment</string>
+    <string name="assign">Assign</string>
+    <string name="CourseManagement">Modify Course Info</string>
+    <string name="addDesAndCapa">"Add"</string>
+    <string name="editDesAndCapa">Edit</string>
+    <string name="addDesAndCapac">Add</string>
+    <string name="deleteSession">"Delete session "</string>
+    <string name="addSession">Add session</string>
+    <string name="addSessionf">Add session</string>
+    <string name="deleteSessionf">Delete session</string>
+    <string name="unassign">Unassign</string>
 </resources>

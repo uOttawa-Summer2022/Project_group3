@@ -14,7 +14,10 @@
         android:theme="@style/Theme.BookingApp"
         tools:targetApi="31">
         <activity
-            android:name="com.example.bookingapp.MainActivity"
+            android:name=".CourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,21 +26,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.bookingapp.InstructorActivity"
+            android:name=".InstructorActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.bookingapp.StudentActivity"
+            android:name=".StudentActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.bookingapp.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.bookingapp.AdminActivity"
+            android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.bookingapp.WelcomeActivity"
+            android:name=".WelcomeActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>
