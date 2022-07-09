@@ -15,16 +15,7 @@ public class InstructorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor);
 
-        Intent intent = getIntent();
 
-        String fName = intent.getStringExtra("firstName");
-        String uName = intent.getStringExtra("userName");
-        String role = intent.getStringExtra("role");
-
-        String message = "Welcome1111" + fName + "/" + uName + "! You are logged in as " + role;
-
-        welcomeMsg = (TextView) findViewById(R.id.welcomeMsg);
-        welcomeMsg.setText(message);
 
 
 
