@@ -26,8 +26,8 @@
     <string name="Edit">Edit</string>
     <string name="EditByCode">Edit By Code</string>
     <string name="EditByName">Edit By Name</string>
-    <string name="search">Search</string>
-    <string name="viewAllCrs">View All</string>
+    <string name="searchByName">Search BY Name</string>
+    <string name="searchByCode">Search By Code</string>
     <string name="CourseAssi">Course Assignment</string>
     <string name="modifyCrs">Modify Course</string>
     <string name="VerifyAssign">Check Assignment</string>
@@ -46,7 +46,7 @@
     <string name="instructor">instructor</string>
     <string name="editCourse">Edit Course</string>
     <string name="description">description</string>
-    <string name="startDate">Start Date:</string>
+    <string name="capacity">Capacity:</string>
     <string name="endDate">End Date:</string>
 
 </resources>

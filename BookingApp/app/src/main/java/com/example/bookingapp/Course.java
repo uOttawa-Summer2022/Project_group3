@@ -1,5 +1,7 @@
 package com.example.bookingapp;
 
+import android.database.Cursor;
+
 import java.util.ArrayList;
 
 public class Course {
@@ -8,8 +10,28 @@ public class Course {
     private ArrayList<Session> sessionList;
     private int capacity;
     private String description;
+    private String instructor;
+    private Cursor cursor;
 
+    public void setSessionList(ArrayList<Session> sessionList) {
+        this.sessionList = sessionList;
+    }
 
+    public Cursor getCursor() {
+        return cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
+    }
 
     public Course() {
     }

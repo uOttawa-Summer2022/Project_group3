@@ -27,6 +27,7 @@
     <string name="Sign">Sign up</string>
     <string name="SignUpInstructor">Sign Up As Instructor</string>
     <string name="SignUpStudent">Sign Up As Student</string>
+    <string name="Sun">Sun</string>
     <string name="VerifyAssign">Check Assignment</string>
     <string name="Welcome">Welcome</string>
     <string name="addDesAndCapa">"Add"</string>
@@ -36,20 +37,25 @@
     <string name="app_name">BookingApp</string>
     <string name="assign">Assign</string>
     <string name="btn_delete">Delete</string>
+    <string name="capacity">Capacity:</string>
     <string name="click_screen_to_continue">Click on screen to continue</string>
     <string name="create">Create Course</string>
     <string name="deleteAccount">Delete Account</string>
     <string name="deleteCourse">Delete Course</string>
     <string name="deleteSession">"Delete session "</string>
     <string name="deleteSessionf">Delete session</string>
+    <string name="description">description</string>
+    <string name="editCourse">Edit Course</string>
     <string name="editDesAndCapa">Edit</string>
+    <string name="endDate">End Date:</string>
+    <string name="instructor">instructor</string>
     <string name="modify">Confirm</string>
     <string name="modifyCrs">Modify Course</string>
     <string name="password">Password</string>
-    <string name="search">Search</string>
-    <string name="unassign">Unassign</string>
+    <string name="searchByCode">Search By Code</string>
+    <string name="searchByName">Search BY Name</string>
+    <string name="unassign">Un-Assign</string>
     <string name="username">Username</string>
-    <string name="viewAllCrs">View All</string>
     <style name="Theme.BookingApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         
         <item name="colorPrimary">@color/purple_500</item>

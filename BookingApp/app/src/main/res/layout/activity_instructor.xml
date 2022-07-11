@@ -6,37 +6,22 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/endDate"
+        android:id="@+id/capacityTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/endDate"
+        android:layout_marginTop="8dp"
+        android:text="@string/capacity"
         android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341" />
 
-    <TextView
-        android:id="@+id/startDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/startDate"
-        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.292" />
+        app:layout_constraintTop_toBottomOf="@+id/instructorTxt" />
 
     <Button
-        android:id="@+id/editCourse"
+        android:id="@+id/editCourseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/editCourse"
@@ -48,7 +33,7 @@
         app:layout_constraintVertical_bias="0.847" />
 
     <Button
-        android:id="@+id/assign"
+        android:id="@+id/assignBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/assign"
@@ -60,7 +45,7 @@
         app:layout_constraintVertical_bias="0.847" />
 
     <Button
-        android:id="@+id/unAssign"
+        android:id="@+id/unAssignBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unassign"
@@ -82,14 +67,14 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/btn_viewAll"
+        android:id="@+id/searchByCBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/viewAllCrs"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/searchByCode"
         app:layout_constraintStart_toEndOf="@+id/course_Code"
-        app:layout_constraintTop_toBottomOf="@+id/button_search" />
+        app:layout_constraintTop_toBottomOf="@+id/searchByNBtn" />
 
     <EditText
         android:id="@+id/course_Code"
@@ -114,7 +99,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_search" />
+        app:layout_constraintTop_toTopOf="@+id/searchByNBtn" />
 
     <TextView
         android:id="@+id/welcomeMsg"
@@ -128,12 +113,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_search"
+        android:id="@+id/searchByNBtn"
         android:layout_width="wrap_content"
         android:layout_height="51dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/search"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/searchByName"
         app:layout_constraintStart_toEndOf="@+id/course_Name"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -141,16 +126,15 @@
         android:id="@+id/instructorTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
         android:text="Instructor: "
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:layout_width="409dp"

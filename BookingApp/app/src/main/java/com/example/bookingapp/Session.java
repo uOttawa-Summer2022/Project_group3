@@ -53,4 +53,9 @@ public class Session {
     public void setDay(Days day) {
         this.day = day;
     }
+
+    @Override
+    public String toString() {
+        return day + ", " + startH+ ":"+startM+" ~ "+endH + ":" + endM;
+    }
 }
