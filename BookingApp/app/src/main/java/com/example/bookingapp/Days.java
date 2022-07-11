@@ -1,5 +1,5 @@
 package com.example.bookingapp;
 
 public enum Days {
-    Monday, Tuesday, Wednesday, Thursday, Friday
+    Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 }

@@ -2626,11 +2626,14 @@ id btn_viewAll
 id btnsignin
 id btnsignin1
 id btnsignup
-id buttonAssign
-id buttonModifyCrs
+id button3
+id button4
+id button5
+id button6
+id button7
+id button8
+id button9
 id buttonPanel
-id buttonUnassign
-id buttonVerifyAssign
 id button_AddCapAndDes
 id button_EditCapAndDes
 id button_addSession
@@ -2677,7 +2680,6 @@ id cos
 id counterclockwise
 id courseCapacity
 id courseDescription
-id courseListView
 id courseSessionDay
 id course_Code
 id course_Name
@@ -2720,6 +2722,7 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id editTextDate
 id edit_query
 id edittext_dropdown_editable
 id edittext_dropdown_noneditable
@@ -3002,7 +3005,6 @@ id textStart
 id textTop
 id textView
 id textView3
-id textView4
 id textView5
 id textView6
 id text_input_end_icon

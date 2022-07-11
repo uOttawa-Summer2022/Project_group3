@@ -6,107 +6,108 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="23"
-8-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml
+8-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="32" />
-9-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml
+9-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml
 10
 11    <application
-11-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:6:5-43:19
+11-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:6:5-43:19
 12        android:allowBackup="true"
-12-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:7:9-35
+12-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:7:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.7.0] C:\Users\Gamer\.gradle\caches\transforms-3\0c734a8f9451ded3159b05d46fc9a23a\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+13-->[androidx.core:core:1.7.0] C:\Users\percy\.gradle\caches\transforms-3\0c734a8f9451ded3159b05d46fc9a23a\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
 14        android:dataExtractionRules="@xml/data_extraction_rules"
-14-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:8:9-65
+14-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:8:9-65
 15        android:debuggable="true"
 16        android:extractNativeLibs="false"
 17        android:fullBackupContent="@xml/backup_rules"
-17-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:9:9-54
+17-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:9:9-54
 18        android:icon="@mipmap/ic_launcher"
-18-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:10:9-43
+18-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:10:9-43
 19        android:label="@string/app_name"
-19-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:11:9-41
+19-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:11:9-41
 20        android:roundIcon="@mipmap/ic_launcher_round"
-20-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:12:9-54
+20-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:12:9-54
 21        android:supportsRtl="true"
-21-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:13:9-35
-22        android:theme="@style/Theme.BookingApp" >
-22-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:14:9-48
-23        <activity
-23-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:16:9-18:40
-24            android:name="com.example.bookingapp.CourseActivity"
-24-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:17:13-43
-25            android:exported="false" />
-25-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:18:13-37
-26        <activity
-26-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:19:9-27:20
-27            android:name="com.example.bookingapp.MainActivity"
-27-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:20:13-41
-28            android:exported="true" >
-28-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:21:13-36
-29            <intent-filter>
-29-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:22:13-26:29
-30                <action android:name="android.intent.action.MAIN" />
-30-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:23:17-69
-30-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:23:25-66
-31
-32                <category android:name="android.intent.category.LAUNCHER" />
-32-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:25:17-77
-32-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:25:27-74
-33            </intent-filter>
-34        </activity>
-35        <activity
-35-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:28:9-30:40
-36            android:name="com.example.bookingapp.InstructorActivity"
-36-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:29:13-47
-37            android:exported="false" />
-37-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:30:13-37
-38        <activity
-38-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:31:9-33:40
-39            android:name="com.example.bookingapp.StudentActivity"
-39-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:32:13-44
-40            android:exported="false" />
-40-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:33:13-37
-41        <activity
-41-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:34:9-36:40
-42            android:name="com.example.bookingapp.LoginActivity"
-42-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:35:13-42
-43            android:exported="false" />
-43-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:36:13-37
-44        <activity
-44-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:37:9-39:40
-45            android:name="com.example.bookingapp.AdminActivity"
-45-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:38:13-42
-46            android:exported="false" />
-46-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:39:13-37
-47        <activity
-47-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:40:9-42:40
-48            android:name="com.example.bookingapp.WelcomeActivity"
-48-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:41:13-44
-49            android:exported="false" />
-49-->C:\Users\Gamer\Desktop\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:42:13-37
-50
-51        <provider
-51-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Gamer\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-52            android:name="androidx.startup.InitializationProvider"
-52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Gamer\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
-53            android:authorities="com.example.bookingapp.androidx-startup"
-53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Gamer\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
-54            android:exported="false" >
-54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Gamer\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
-55            <meta-data
-55-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Gamer\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-56                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-56-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Gamer\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
-57                android:value="androidx.startup" />
-57-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Gamer\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
-58            <meta-data
-58-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Gamer\.gradle\caches\transforms-3\8eef53d9995d138e5396bc0361630197\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-59                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-59-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Gamer\.gradle\caches\transforms-3\8eef53d9995d138e5396bc0361630197\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-60                android:value="androidx.startup" />
-60-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Gamer\.gradle\caches\transforms-3\8eef53d9995d138e5396bc0361630197\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-61        </provider>
-62    </application>
-63
-64</manifest>
+21-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:13:9-35
+22        android:testOnly="true"
+23        android:theme="@style/Theme.BookingApp" >
+23-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:14:9-48
+24        <activity
+24-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:16:9-18:40
+25            android:name="com.example.bookingapp.CourseActivity"
+25-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:17:13-43
+26            android:exported="false" />
+26-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:18:13-37
+27        <activity
+27-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:19:9-27:20
+28            android:name="com.example.bookingapp.MainActivity"
+28-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:20:13-41
+29            android:exported="true" >
+29-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:21:13-36
+30            <intent-filter>
+30-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:22:13-26:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:23:17-69
+31-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:23:25-66
+32
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:25:17-77
+33-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:25:27-74
+34            </intent-filter>
+35        </activity>
+36        <activity
+36-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:28:9-30:40
+37            android:name="com.example.bookingapp.InstructorActivity"
+37-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:29:13-47
+38            android:exported="false" />
+38-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:30:13-37
+39        <activity
+39-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:31:9-33:40
+40            android:name="com.example.bookingapp.StudentActivity"
+40-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:32:13-44
+41            android:exported="false" />
+41-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:33:13-37
+42        <activity
+42-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:34:9-36:40
+43            android:name="com.example.bookingapp.LoginActivity"
+43-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:35:13-42
+44            android:exported="false" />
+44-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:36:13-37
+45        <activity
+45-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:37:9-39:40
+46            android:name="com.example.bookingapp.AdminActivity"
+46-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:38:13-42
+47            android:exported="false" />
+47-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:39:13-37
+48        <activity
+48-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:40:9-42:40
+49            android:name="com.example.bookingapp.WelcomeActivity"
+49-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:41:13-44
+50            android:exported="false" />
+50-->C:\Users\percy\AndroidStudioProjects\Project_group3\BookingApp\app\src\main\AndroidManifest.xml:42:13-37
+51
+52        <provider
+52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\percy\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+53            android:name="androidx.startup.InitializationProvider"
+53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\percy\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+54            android:authorities="com.example.bookingapp.androidx-startup"
+54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\percy\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+55            android:exported="false" >
+55-->[androidx.emoji2:emoji2:1.0.0] C:\Users\percy\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+56            <meta-data
+56-->[androidx.emoji2:emoji2:1.0.0] C:\Users\percy\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+57                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+57-->[androidx.emoji2:emoji2:1.0.0] C:\Users\percy\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+58                android:value="androidx.startup" />
+58-->[androidx.emoji2:emoji2:1.0.0] C:\Users\percy\.gradle\caches\transforms-3\9cb5d0b2fd275b8005e0d8fda37c4df6\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+59            <meta-data
+59-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\percy\.gradle\caches\transforms-3\8eef53d9995d138e5396bc0361630197\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+60                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+60-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\percy\.gradle\caches\transforms-3\8eef53d9995d138e5396bc0361630197\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+61                android:value="androidx.startup" />
+61-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\percy\.gradle\caches\transforms-3\8eef53d9995d138e5396bc0361630197\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+62        </provider>
+63    </application>
+64
+65</manifest>

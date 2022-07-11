@@ -44,7 +44,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 }else {
                     intent[0] = new Intent(getApplicationContext(), StudentActivity.class);
                 }
-
+                intent[0].putExtra("userName", uName);
+                intent[0].putExtra("role", role);
                 startActivity(intent[0]);
             }
         });

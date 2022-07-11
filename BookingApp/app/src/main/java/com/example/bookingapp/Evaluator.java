@@ -1,5 +1,6 @@
 package com.example.bookingapp;
 
+
 public class Evaluator {
     public static boolean isValidCrsName(String name){
         return name.matches("[A-Za-z]+");
@@ -26,6 +27,9 @@ public class Evaluator {
         return name.matches("[A-Za-z0-9]+");
 
     }
+
+
+
 
 
 }

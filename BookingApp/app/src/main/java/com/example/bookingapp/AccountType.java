@@ -1,5 +1,5 @@
 package com.example.bookingapp;
 
-public enum Enum {
+public enum AccountType {
     ADMIN,INSTRUCTOR,STUDENT
 }

@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
 public class AccountDB extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Accounts.db";
@@ -119,7 +117,7 @@ public class AccountDB extends SQLiteOpenHelper {
 
             account.setUser_name(name);
             account.setPassword(cursor.getString(1));
-            account.setType(com.example.bookingapp.Enum.valueOf(cursor.getString(2)) );
+            account.setType(AccountType.valueOf(cursor.getString(2)) );
             cursor.close();
             db.close();
             return account;

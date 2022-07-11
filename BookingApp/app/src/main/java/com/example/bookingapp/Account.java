@@ -3,13 +3,13 @@ package com.example.bookingapp;
 public class Account {
     private String user_name;
     private String password;
-    private Enum type;
+    private AccountType type;
 //constructor
     public Account() {
 
     }
 
-    public Account(String user_name, String password, Enum type) {
+    public Account(String user_name, String password, AccountType type) {
         this.user_name = user_name;
         this.password = password;
         this.type = type;
@@ -31,11 +31,11 @@ public class Account {
         this.password = password;
     }
 
-    public Enum getType() {
+    public AccountType getType() {
         return type;
     }
 
-    public void setType(Enum type) {
+    public void setType(AccountType type) {
         this.type = type;
     }
 

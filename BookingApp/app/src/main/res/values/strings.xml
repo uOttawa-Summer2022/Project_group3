@@ -40,7 +40,13 @@
     <string name="addSession">Add session</string>
     <string name="addSessionf">Add session</string>
     <string name="deleteSessionf">Delete session</string>
-    <string name="unassign">Unassign</string>
+    <string name="unassign">Un-Assign</string>
     <string name="click_screen_to_continue">Click on screen to continue</string>
+    <string name="Sun">Sun</string>
+    <string name="instructor">instructor</string>
+    <string name="editCourse">Edit Course</string>
+    <string name="description">description</string>
+    <string name="startDate">Start Date:</string>
+    <string name="endDate">End Date:</string>
 
 </resources>
