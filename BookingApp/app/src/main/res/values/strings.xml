@@ -41,4 +41,6 @@
     <string name="addSessionf">Add session</string>
     <string name="deleteSessionf">Delete session</string>
     <string name="unassign">Unassign</string>
+    <string name="click_screen_to_continue">Click on screen to continue</string>
+
 </resources>

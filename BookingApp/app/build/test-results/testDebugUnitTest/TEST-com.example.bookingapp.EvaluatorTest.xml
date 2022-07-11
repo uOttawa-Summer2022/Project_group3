@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.bookingapp.EvaluatorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2022-07-11T03:16:47" hostname="DESKTOP-PRLO5OE" time="0.006">
+  <properties/>
+  <testcase name="isValidFirstNameFalse" classname="com.example.bookingapp.EvaluatorTest" time="0.002"/>
+  <testcase name="isValidSessionFalse" classname="com.example.bookingapp.EvaluatorTest" time="0.0"/>
+  <testcase name="isValidCrsCodeTrue" classname="com.example.bookingapp.EvaluatorTest" time="0.0"/>
+  <testcase name="isValidLastNameTrue" classname="com.example.bookingapp.EvaluatorTest" time="0.001"/>
+  <testcase name="isValidUserNameFalse" classname="com.example.bookingapp.EvaluatorTest" time="0.0"/>
+  <testcase name="isValidSessionTrue" classname="com.example.bookingapp.EvaluatorTest" time="0.0"/>
+  <testcase name="isValidCrsCodeFalse" classname="com.example.bookingapp.EvaluatorTest" time="0.0"/>
+  <testcase name="isValidUserNameTrue" classname="com.example.bookingapp.EvaluatorTest" time="0.0"/>
+  <testcase name="isValidFirstNameTrue" classname="com.example.bookingapp.EvaluatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

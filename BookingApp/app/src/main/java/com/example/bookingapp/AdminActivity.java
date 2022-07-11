@@ -109,10 +109,12 @@ public class AdminActivity extends AppCompatActivity {
     }
     private void printToast(boolean editSucc){
         if(editSucc){
-            Toast.makeText(AdminActivity.this, "Course Edit Successes", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdminActivity.this, "Course Edit Successful", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(AdminActivity.this, "Course Edit Failed", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 }
