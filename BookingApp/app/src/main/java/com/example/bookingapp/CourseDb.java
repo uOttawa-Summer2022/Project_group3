@@ -68,7 +68,7 @@ public class CourseDb extends SQLiteOpenHelper {
             course.setInstructor(cursor.getString(2));
             course.setDescription(cursor.getString(3));
             course.setCapacity(Integer.getInteger(cursor.getString(4)));
-            ArrayList<Session> sessionList = new ArrayList<>();
+            ArrayList<ArrayList<Session>> sessionList = new ArrayList<>();
             for(int i = 5; i < 12;i++){
                 Days days;
                 switch (i){
@@ -87,10 +87,27 @@ public class CourseDb extends SQLiteOpenHelper {
                     default:
                         days = Days.Saturday;
                 }
-                String[] sessionDayList = cursor.getString(i).split("|");
-                for(int j = 0;j<sessionDayList.length;j++){
-
+                String temp = cursor.getString(i);
+                if(temp.equals(null)){
+                    sessionList.add(null);
+                    continue;
                 }
+                String[] sessionDayList = temp.split("|");
+                ArrayList<Session> List4 = new ArrayList<>();
+
+                for(int j = 0;j<sessionDayList.length;j++){
+                    String[] List1 = sessionDayList[j].split("-");
+                    String[] List2 = List1[0].split(":");
+                    String[] List3 = List1[1].split(":");
+                    int sH, sM, eH, eM;
+                    sH = Integer.getInteger(List2[0]);
+                    sM = Integer.getInteger(List2[1]);
+                    eH = Integer.getInteger(List3[0]);
+                    eM = Integer.getInteger(List3[1]);
+                    Session session = new Session(sH,sM,eH,eM,days);
+                    List4.add(session);
+                }
+                sessionList.add(List4);
 
             }
             course.setCursor(cursor);

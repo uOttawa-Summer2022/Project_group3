@@ -6,7 +6,7 @@ public class Session {
 
 
 
-    public Session(int startM, int startH, int endM, int endH, Days day) {
+    public Session(int startH, int startM, int endH, int endM, Days day) {
         this.startM = startM;
         this.startH = startH;
         this.endM = endM;
