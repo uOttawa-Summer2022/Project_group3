@@ -48,5 +48,6 @@
     <string name="description">Description:</string>
     <string name="capacity">Capacity:</string>
     <string name="endDate">End Date:</string>
+    <string name="viewAll">View All</string>
 
 </resources>

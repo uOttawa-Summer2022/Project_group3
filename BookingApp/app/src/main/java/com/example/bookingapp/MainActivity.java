@@ -49,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
                 String ln = lastname.getText().toString();
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+                if(!Evaluator.isValidFirstName(fn)){
+                    Toast.makeText(MainActivity.this, "Invalid First Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!Evaluator.isValidLastName(ln)){
+                    Toast.makeText(MainActivity.this, "Invalid Last Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!Evaluator.isValidUserName(user)){
+                    Toast.makeText(MainActivity.this, "Invalid User Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String role;
                 if(role_instructor.isChecked()) {
                      role = role_instructor.getText().toString();

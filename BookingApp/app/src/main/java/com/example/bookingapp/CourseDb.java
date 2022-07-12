@@ -188,6 +188,24 @@ public class CourseDb extends SQLiteOpenHelper {
         return result;
     }
 
+    public boolean editCrsDescription(String description,String code){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_DESCRIPTION, description);
+        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        return true;
+    }
+    public boolean editCrsCapacity(String code, int capacity){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_CAPACITY, capacity);
+        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        return true;
+    }
+
     public Boolean AddSession(String code, Session[] session){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();

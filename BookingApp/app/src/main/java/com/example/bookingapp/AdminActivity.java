@@ -68,6 +68,14 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String CNameS = CourseName.getText().toString();
                 String CCodeS = CourseCode.getText().toString();
+                if(!Evaluator.isValidCrsName(CNameS)){
+                    Toast.makeText(AdminActivity.this, "Invalid Course Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!Evaluator.isValidCrsCode(CCodeS)){
+                    Toast.makeText(AdminActivity.this, "Invalid Course Code", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 boolean result =cdb.AddCourse(new com.example.bookingapp.Course(CCodeS,CNameS));
                 if(result){
                     Toast.makeText(AdminActivity.this, "Add successful", Toast.LENGTH_SHORT).show();
