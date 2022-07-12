@@ -42,6 +42,7 @@ public class Course {
         this.capacity=0;
         this.description="";
         this.sessionList = new ArrayList<>();
+        this.instructor = "null";
     }
 
     public ArrayList<ArrayList<Session>> getSessionList() {
@@ -77,5 +78,18 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", sessionList=" + sessionList +
+                ", capacity=" + capacity +
+                ", description='" + description + '\'' +
+                ", instructor='" + instructor + '\'' +
+                ", cursor=" + cursor +
+                '}';
     }
 }

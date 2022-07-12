@@ -25,7 +25,7 @@ public class CourseDb extends SQLiteOpenHelper {
     private static final String COLUMN_SESSION_ON_FRI = "sessionOnFri";
     private static final String COLUMN_SESSION_ON_SAT = "sessionOnSat";
     private static final String DATABASE_NAME = "courses.db";
-
+    private Cursor courseCursor;
     public CourseDb( Context context){
         super(context, DATABASE_NAME,null,1);
     }
@@ -37,7 +37,7 @@ public class CourseDb extends SQLiteOpenHelper {
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_INSTRUCTOR + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_CAPACITY  + " TEXT, " +
+                COLUMN_CAPACITY  + " INTEGER, " +
                 COLUMN_SESSION_ON_SUN + " TEXT, " +
                 COLUMN_SESSION_ON_MON + " TEXT, " +
                 COLUMN_SESSION_ON_TUE + " TEXT, " +
@@ -55,21 +55,26 @@ public class CourseDb extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public Course searchCourseByC(String code){
+    public Course searchCourse(String code, boolean byN){
+        String col = COLUMN_CODE;
+        if(byN){
+            col = COLUMN_NAME;
+        }
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_NAME + " = \"" + code + "\"";
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " = \"" + code + "\"";
         Cursor cursor = db.rawQuery(query, null);
-        String result = "";
-        Course course = new Course();
+        Course course;
 
         if(cursor.moveToFirst()){
             course = new Course(cursor.getString(1), code);
 
             course.setInstructor(cursor.getString(2));
             course.setDescription(cursor.getString(3));
-            course.setCapacity(Integer.getInteger(cursor.getString(4)));
+            course.setCapacity(cursor.getInt(4));
+
+
             ArrayList<ArrayList<Session>> sessionList = new ArrayList<>();
-            for(int i = 5; i < 12;i++){
+            for(int i = 5; i < 11;i++){
                 Days days;
                 switch (i){
                     case 5:
@@ -88,7 +93,7 @@ public class CourseDb extends SQLiteOpenHelper {
                         days = Days.Saturday;
                 }
                 String temp = cursor.getString(i);
-                if(temp.equals(null)){
+                if(temp==null){
                     sessionList.add(null);
                     continue;
                 }
@@ -100,10 +105,10 @@ public class CourseDb extends SQLiteOpenHelper {
                     String[] List2 = List1[0].split(":");
                     String[] List3 = List1[1].split(":");
                     int sH, sM, eH, eM;
-                    sH = Integer.getInteger(List2[0]);
-                    sM = Integer.getInteger(List2[1]);
-                    eH = Integer.getInteger(List3[0]);
-                    eM = Integer.getInteger(List3[1]);
+                    sH = (int)Integer.getInteger(List2[0]);
+                    sM = (int)Integer.getInteger(List2[1]);
+                    eH = (int)Integer.getInteger(List3[0]);
+                    eM = (int)Integer.getInteger(List3[1]);
                     Session session = new Session(sH,sM,eH,eM,days);
                     List4.add(session);
                 }
@@ -112,11 +117,8 @@ public class CourseDb extends SQLiteOpenHelper {
             }
             course.setCursor(cursor);
 
-
-
-
-
-
+        }else {
+            return null;
         }
         db.close();
         return course;
@@ -161,7 +163,7 @@ public class CourseDb extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean EditCourseInstructor(String code, Instructor instructor){
+    public boolean EditCourseInstructor(String code, String instructor){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
@@ -170,7 +172,7 @@ public class CourseDb extends SQLiteOpenHelper {
             result = true;
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_NAME, instructor.getUser_name());
+            contentValues.put(COLUMN_INSTRUCTOR, instructor);
 
             db.update(TABLE_NAME, contentValues, COLUMN_CODE + "=?", new String[]{code});
             cursor.close();
