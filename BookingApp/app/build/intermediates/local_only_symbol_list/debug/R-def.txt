@@ -32,6 +32,7 @@ id button_goBackInstructorActivity
 id capacityTxt
 id courseCapacity
 id courseDescription
+id courseList
 id courseSessionDay
 id course_Code
 id course_Name
@@ -61,6 +62,7 @@ id textView6
 id unAssignBtn
 id username
 id username1
+id viewAll
 id welcomeMsg
 id welcomeMsg1
 layout activity_admin

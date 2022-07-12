@@ -191,6 +191,7 @@ public class CourseDb extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             result = true;
             ContentValues contentValues = new ContentValues();
+            col=COLUMN_SESSION_ON_MON;
             for(int i = 0; i < session.length;i++) {
                 switch (session[i].getDay()) {
                     case Sunday:
@@ -205,8 +206,7 @@ public class CourseDb extends SQLiteOpenHelper {
                         col = COLUMN_SESSION_ON_FRI;
                     case Saturday:
                         col = COLUMN_SESSION_ON_SAT;
-                    default:
-                        col = COLUMN_SESSION_ON_MON;
+
                 }
                 @SuppressLint("Range") String oldSessionData = cursor.getString(cursor.getColumnIndex(col));
                 String newSessionData = session[i].toString() + "|";
@@ -235,6 +235,23 @@ public class CourseDb extends SQLiteOpenHelper {
         db.close();
         return result;
     }
+    public boolean editCrsDescription(String description,String code){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_DESCRIPTION, description);
+        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        return true;
+    }
+    public boolean editCrsCapacity(String code, int capacity){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_CAPACITY, capacity);
+        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        return true;
+    }
 
 
     @SuppressLint("Range")
@@ -248,6 +265,9 @@ public class CourseDb extends SQLiteOpenHelper {
             do {
                 listOfCourses.add(cursor.getString(cursor.getColumnIndex("value")));
             }while(cursor.moveToNext());
+        }
+        else{
+            listOfCourses.add("empty");
         }
 
         cursor.close();

@@ -2673,6 +2673,7 @@ id cos
 id counterclockwise
 id courseCapacity
 id courseDescription
+id courseList
 id courseSessionDay
 id course_Code
 id course_Name
@@ -3037,6 +3038,7 @@ id useLogo
 id username
 id username1
 id vertical_only
+id viewAll
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
