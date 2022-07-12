@@ -54,6 +54,10 @@ public class InstructorActivity extends AppCompatActivity {
         searchByCBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(course_Name.getText().toString().trim().equals("")){
+                    Toast.makeText(InstructorActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 course = cdb.searchCourse(course_Code.getText().toString(),false);
                 emptyCourse();
 
@@ -63,6 +67,10 @@ public class InstructorActivity extends AppCompatActivity {
         searchByNBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(course_Name.getText().toString().trim().equals("")){
+                    Toast.makeText(InstructorActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 course = cdb.searchCourse(course_Name.getText().toString(),true);
                 emptyCourse();
 
@@ -76,12 +84,16 @@ public class InstructorActivity extends AppCompatActivity {
                 if(course!=null){
                     if(course.getInstructor() == null||course.getInstructor().equals("null")){
                         cdb.EditCourseInstructor(course.getCode(),userName);
-                        course = cdb.searchCourse(course_Code.getText().toString(),false);
+                        course = cdb.searchCourse(course.getCode(),false);
                         Toast.makeText(InstructorActivity.this, "Assign Success", Toast.LENGTH_SHORT).show();
+
+
                     }else {
                         Toast.makeText(InstructorActivity.this, "Assign Fail", Toast.LENGTH_SHORT).show();
                     }
                 }
+
+
                 emptyCourse();
 
             }
@@ -93,7 +105,7 @@ public class InstructorActivity extends AppCompatActivity {
                 if(course!=null){
                     if(course.getInstructor() != null && course.getInstructor().equals(userName)){
                         cdb.EditCourseInstructor(course.getCode(),"null");
-                        course = cdb.searchCourse(course_Code.getText().toString(),false);
+                        course = cdb.searchCourse(course.getCode(),false);
                         Toast.makeText(InstructorActivity.this, "Un-assign Success", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(InstructorActivity.this, "Un-assign Fail", Toast.LENGTH_SHORT).show();

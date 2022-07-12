@@ -66,7 +66,13 @@ public class CourseDb extends SQLiteOpenHelper {
         Course course;
 
         if(cursor.moveToFirst()){
-            course = new Course(cursor.getString(1), code);
+            if(byN){
+                course = new Course(cursor.getString(0), code);
+            }else {
+
+                course = new Course(code, cursor.getString(1));
+            }
+
 
             course.setInstructor(cursor.getString(2));
             course.setDescription(cursor.getString(3));
