@@ -54,9 +54,7 @@ public class InstructorActivity extends AppCompatActivity {
         searchByCBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                instructorTxt.setText("1111");
                 course = cdb.searchCourse(course_Code.getText().toString(),false);
-                instructorTxt.setText("2222");
                 emptyCourse();
 
             }
@@ -65,7 +63,7 @@ public class InstructorActivity extends AppCompatActivity {
         searchByNBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                course = cdb.searchCourse(course_Code.getText().toString(),true);
+                course = cdb.searchCourse(course_Name.getText().toString(),true);
                 emptyCourse();
 
             }
@@ -75,22 +73,34 @@ public class InstructorActivity extends AppCompatActivity {
         assignBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(course.getInstructor() == null){
-                    String bool = cdb.EditCourseInstructor(course.getCode(),userName)?"true":"False";
-                    Toast.makeText(InstructorActivity.this, bool, Toast.LENGTH_SHORT).show();
+                if(course!=null){
+                    if(course.getInstructor() == null||course.getInstructor().equals("null")){
+                        cdb.EditCourseInstructor(course.getCode(),userName);
+                        course = cdb.searchCourse(course_Code.getText().toString(),false);
+                        Toast.makeText(InstructorActivity.this, "Assign Success", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(InstructorActivity.this, "Assign Fail", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                course = cdb.searchCourse(course_Code.getText().toString(),false);
                 emptyCourse();
+
             }
         });
 
         unAssignBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(course.getInstructor() != null && course.getInstructor().equals(userName)){
-                    cdb.EditCourseInstructor(course.getCode(),"null");
+                if(course!=null){
+                    if(course.getInstructor() != null && course.getInstructor().equals(userName)){
+                        cdb.EditCourseInstructor(course.getCode(),"null");
+                        course = cdb.searchCourse(course_Code.getText().toString(),false);
+                        Toast.makeText(InstructorActivity.this, "Un-assign Success", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(InstructorActivity.this, "Un-assign Fail", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                course = cdb.searchCourse(course_Code.getText().toString(),false);
+
+
                 emptyCourse();
             }
         });
@@ -120,7 +130,7 @@ public class InstructorActivity extends AppCompatActivity {
             Toast.makeText(InstructorActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        instructorTxt.setText("Instructor: " + course);
+        instructorTxt.setText("Instructor: " + course.getInstructor()+course);
         capacityTxt.setText("Capacity: "+ course.getCapacity());
         return true;
     }

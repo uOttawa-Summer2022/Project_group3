@@ -115,7 +115,7 @@ public class CourseDb extends SQLiteOpenHelper {
                 sessionList.add(List4);
 
             }
-            course.setCursor(cursor);
+
 
         }else {
             return null;

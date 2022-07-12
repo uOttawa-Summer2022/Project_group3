@@ -45,7 +45,7 @@
     <string name="Sun">Sun</string>
     <string name="instructor">instructor</string>
     <string name="editCourse">Edit Course</string>
-    <string name="description">description</string>
+    <string name="description">Description:</string>
     <string name="capacity">Capacity:</string>
     <string name="endDate">End Date:</string>
 

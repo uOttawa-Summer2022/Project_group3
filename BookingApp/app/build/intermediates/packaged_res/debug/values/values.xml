@@ -44,7 +44,7 @@
     <string name="deleteCourse">Delete Course</string>
     <string name="deleteSession">"Delete session "</string>
     <string name="deleteSessionf">Delete session</string>
-    <string name="description">description</string>
+    <string name="description">Description:</string>
     <string name="editCourse">Edit Course</string>
     <string name="editDesAndCapa">Edit</string>
     <string name="endDate">End Date:</string>

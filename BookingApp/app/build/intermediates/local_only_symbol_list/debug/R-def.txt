@@ -35,6 +35,7 @@ id courseDescription
 id courseSessionDay
 id course_Code
 id course_Name
+id descriptionTxt
 id editCourseBtn
 id endTimeHour
 id endTimeMinute
