@@ -10,6 +10,7 @@ color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 id AccName
+id CourseTxt
 id Course_Code
 id Course_Name
 id CreateCourse
@@ -35,7 +36,8 @@ id courseDescription
 id courseSessionDay
 id course_Code
 id course_Name
-id descriptionTxt
+id course_listView
+id description
 id editCourseBtn
 id endTimeHour
 id endTimeMinute
@@ -62,6 +64,8 @@ id textView6
 id unAssignBtn
 id username
 id username1
+id viewAll
+id viewSessionBtn
 id welcomeMsg
 id welcomeMsg1
 layout activity_admin
@@ -110,6 +114,7 @@ string deleteAccount
 string deleteCourse
 string deleteSession
 string deleteSessionf
+string descript
 string description
 string editCourse
 string editDesAndCapa
@@ -122,6 +127,8 @@ string searchByCode
 string searchByName
 string unassign
 string username
+string viewAll
+string viewSession
 style Theme.BookingApp
 xml backup_rules
 xml data_extraction_rules

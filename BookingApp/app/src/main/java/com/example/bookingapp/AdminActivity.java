@@ -76,7 +76,7 @@ public class AdminActivity extends AppCompatActivity {
                     Toast.makeText(AdminActivity.this, "Invalid Course Code", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                boolean result =cdb.AddCourse(new com.example.bookingapp.Course(CCodeS,CNameS));
+                    boolean result =cdb.AddCourse(new com.example.bookingapp.Course(CCodeS,CNameS));
                 if(result){
                     Toast.makeText(AdminActivity.this, "Add successful", Toast.LENGTH_SHORT).show();
                 }else {

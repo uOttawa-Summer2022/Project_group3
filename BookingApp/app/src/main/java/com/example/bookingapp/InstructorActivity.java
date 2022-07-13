@@ -3,6 +3,7 @@ package com.example.bookingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,15 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class InstructorActivity extends AppCompatActivity {
+public class InstructorActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    TextView welcomeMsg, instructorTxt, capacityTxt, descriptionTxt;
+    TextView welcomeMsg, instructorTxt, capacityTxt;
     EditText course_Code, course_Name;
-    Button searchByNBtn, searchByCBtn, logOut, unAssignBtn, assignBtn, editCourseBtn, viewAll;
-    ArrayList<String> courseList;
+    Button searchByNBtn, searchByCBtn, logOut, unAssignBtn, assignBtn, editCourseBtn, viewAll, descript, viewSession;
+    ArrayList<String> courseList, searchCourseList;
     ListView courseListView;
-    ArrayAdapter adapter;
+    ArrayAdapter<String> allCourseAdapter;
     static Course course;
+
 
     CourseDb cdb;
     @Override
@@ -33,7 +35,7 @@ public class InstructorActivity extends AppCompatActivity {
         welcomeMsg = (TextView) findViewById(R.id.welcomeMsg);
         instructorTxt = (TextView) findViewById(R.id.instructorTxt);
         capacityTxt= (TextView) findViewById(R.id.capacityTxt);
-        descriptionTxt = (TextView) findViewById(R.id.descriptionTxt);
+
 
         course_Code = (EditText) findViewById(R.id.course_Code);
         course_Name = (EditText) findViewById(R.id.course_Name);
@@ -45,8 +47,16 @@ public class InstructorActivity extends AppCompatActivity {
         assignBtn = (Button) findViewById(R.id.assignBtn);
         editCourseBtn = (Button) findViewById(R.id.editCourseBtn);
         viewAll = (Button) findViewById(R.id.viewAll) ;
+        descript = (Button) findViewById(R.id.description);
+        viewSession = (Button) findViewById(R.id.viewSessionBtn);
+
+        courseListView = (ListView) findViewById(R.id.course_listView);
+
+
 
         cdb = new CourseDb(this);
+
+        courseList = cdb.findAllCourses();
 
         final Intent[] intent = {getIntent()};
 
@@ -54,6 +64,7 @@ public class InstructorActivity extends AppCompatActivity {
         String userName = intent[0].getStringExtra("userName");
         String role = intent[0].getStringExtra("role");
 
+        welcomeMsg.setText(role+" "+userName);
 
 
         searchByCBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +75,7 @@ public class InstructorActivity extends AppCompatActivity {
                     return;
                 }
                 course = cdb.searchCourse(course_Code.getText().toString(),false);
-                emptyCourse();
+                printCourse();
 
             }
         });
@@ -77,7 +88,7 @@ public class InstructorActivity extends AppCompatActivity {
                     return;
                 }
                 course = cdb.searchCourse(course_Name.getText().toString(),true);
-                emptyCourse();
+                printCourse();
 
             }
         });
@@ -99,7 +110,7 @@ public class InstructorActivity extends AppCompatActivity {
                 }
 
 
-                emptyCourse();
+                printCourse();
 
             }
         });
@@ -118,7 +129,7 @@ public class InstructorActivity extends AppCompatActivity {
                 }
 
 
-                emptyCourse();
+                printCourse();
             }
         });
 
@@ -133,9 +144,9 @@ public class InstructorActivity extends AppCompatActivity {
         viewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> courseList1=cdb.findAllCourses();
 
-                viewCourses(courseList1);
+
+                viewCourses(courseList);
 
 
             }
@@ -144,36 +155,46 @@ public class InstructorActivity extends AppCompatActivity {
         editCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                emptyCourse();
+                if(course == null){
+                    Toast.makeText(InstructorActivity.this, "No Selected Course", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 intent[0] = new Intent(getApplicationContext(), CourseActivity.class);
                 intent[0].putExtra("userName", userName);
                 intent[0].putExtra("role", role);
                 startActivity(intent[0]);
             }
         });
+
+        courseListView.setOnItemClickListener(this);
+
     }
 
-    public boolean emptyCourse(){
+    public boolean printCourse(){
         if(course == null){
-            Toast.makeText(InstructorActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(InstructorActivity.this, "Search Course fail", Toast.LENGTH_SHORT).show();
             return false;
         }
         instructorTxt.setText("Instructor: " + course.getInstructor());
         capacityTxt.setText("Capacity: "+ course.getCapacity());
-        descriptionTxt.setText("Description: "+ course.getDescription());
+
         return true;
     }
 
     private void viewCourses(ArrayList<String> list) {
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        courseListView.setAdapter(adapter);
+        allCourseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        courseListView.setAdapter(allCourseAdapter);
+
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String code =courseList.get(position).split(":")[1];
+        course = cdb.searchCourse(code, false);
 
+        Toast.makeText(this, courseList.get(position), Toast.LENGTH_SHORT).show();
+        printCourse();
 
-
-
-
-
+    }
 }

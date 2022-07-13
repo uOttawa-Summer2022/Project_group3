@@ -49,5 +49,7 @@
     <string name="capacity">Capacity:</string>
     <string name="endDate">End Date:</string>
     <string name="viewAll">View All</string>
+    <string name="viewSession">View Session</string>
+    <string name="descript">Descript</string>
 
 </resources>
