@@ -17,14 +17,14 @@ import java.util.ArrayList;
 
 public class InstructorActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    TextView welcomeMsg, instructorTxt, capacityTxt;
+    TextView welcomeMsg, CourseTxt, instructorTxt, capacityTxt;
     EditText course_Code, course_Name;
     Button searchByNBtn, searchByCBtn, logOut, unAssignBtn, assignBtn, editCourseBtn, viewAll, descript, viewSession;
-    ArrayList<String> courseList, searchCourseList;
+    ArrayList<String> courseList;
+    static ArrayList<ArrayList<Session>> sessionList;
     ListView courseListView;
     ArrayAdapter<String> allCourseAdapter;
     static Course course;
-
 
     CourseDb cdb;
     @Override
@@ -35,7 +35,7 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
         welcomeMsg = (TextView) findViewById(R.id.welcomeMsg);
         instructorTxt = (TextView) findViewById(R.id.instructorTxt);
         capacityTxt= (TextView) findViewById(R.id.capacityTxt);
-
+        CourseTxt = ( TextView) findViewById(R.id.CourseTxt);
 
         course_Code = (EditText) findViewById(R.id.course_Code);
         course_Name = (EditText) findViewById(R.id.course_Name);
@@ -65,7 +65,12 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
         String role = intent[0].getStringExtra("role");
 
         welcomeMsg.setText(role+" "+userName);
-
+        if(course != null){
+            course = cdb.searchCourse(course.getCode(), false);
+        }
+        CourseTxt.setText("Course: "+ course.getName()+" "+course.getCode());
+        instructorTxt.setText("Instructor: " + course.getInstructor());
+        capacityTxt.setText("Capacity: "+ course.getCapacity());
 
         searchByCBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,18 +161,46 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
                 if(course == null){
-                    Toast.makeText(InstructorActivity.this, "No Selected Course", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InstructorActivity.this, "Search Course fail", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 intent[0] = new Intent(getApplicationContext(), CourseActivity.class);
                 intent[0].putExtra("userName", userName);
                 intent[0].putExtra("role", role);
                 startActivity(intent[0]);
+
+            }
+        });
+
+        descript.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(course == null){
+                    Toast.makeText(InstructorActivity.this, "Search Course fail", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                intent[0] = new Intent(getApplicationContext(), WelcomeActivity.class);
+                intent[0].putExtra("Des", course.getDescription());
+                intent[0].putExtra("userName", userName);
+                intent[0].putExtra("role", "1"+role);
+                startActivity(intent[0]);
             }
         });
 
         courseListView.setOnItemClickListener(this);
 
+        viewSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(course == null){
+                    Toast.makeText(InstructorActivity.this, "Search Course fail", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                sessionList = course.getSessionList();
+                intent[0] = new Intent(getApplicationContext(), SessionActivity.class);
+                startActivity(intent[0]);
+            }
+        });
     }
 
     public boolean printCourse(){
@@ -175,6 +208,7 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
             Toast.makeText(InstructorActivity.this, "Search Course fail", Toast.LENGTH_SHORT).show();
             return false;
         }
+        CourseTxt.setText("Course: "+ course.getName()+" "+course.getCode());
         instructorTxt.setText("Instructor: " + course.getInstructor());
         capacityTxt.setText("Capacity: "+ course.getCapacity());
 

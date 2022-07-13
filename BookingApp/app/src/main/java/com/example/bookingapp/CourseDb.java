@@ -103,7 +103,7 @@ public class CourseDb extends SQLiteOpenHelper {
                     sessionList.add(null);
                     continue;
                 }
-                String[] sessionDayList = temp.split("|");
+                String[] sessionDayList = temp.split("/");
                 ArrayList<Session> List4 = new ArrayList<>();
 
                 for(int j = 0;j<sessionDayList.length;j++){
@@ -233,13 +233,48 @@ public class CourseDb extends SQLiteOpenHelper {
                         col = COLUMN_SESSION_ON_MON;
                 }
                 @SuppressLint("Range") String oldSessionData = cursor.getString(cursor.getColumnIndex(col));
-                String newSessionData = session[i].toString() + "|";
+                String newSessionData = session[i].toString() + "/";
                 contentValues.put(col, oldSessionData + newSessionData);
 
 
             }
             db.update(TABLE_NAME, contentValues, COLUMN_CODE + "=?", new String[]{code});
             cursor.close();
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean delSession(String code, Days days, String coverString){
+        boolean result = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
+        Cursor cursor = db.rawQuery(query, null);
+        String col;
+        switch (days) {
+            case Sunday:
+                col = COLUMN_SESSION_ON_SUN;
+            case Tuesday:
+                col = COLUMN_SESSION_ON_TUE;
+            case Wednesday:
+                col = COLUMN_SESSION_ON_WED;
+            case Thursday:
+                col = COLUMN_SESSION_ON_THU;
+            case Friday:
+                col = COLUMN_SESSION_ON_FRI;
+            case Saturday:
+                col = COLUMN_SESSION_ON_SAT;
+            default:
+                col = COLUMN_SESSION_ON_MON;
+        }
+        if(cursor.moveToFirst()){
+            result = true;
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(col, coverString);
+
+            db.update(TABLE_NAME, contentValues, COLUMN_CODE + "=?", new String[]{code});
+            cursor.close();
+
         }
         db.close();
         return result;

@@ -4,7 +4,10 @@ public class Session {
     private int startM,startH,endM,endH;
     private Days day;
 
+    public Session(String sessionString){
+        String days = sessionString.split("/ ")[0];
 
+    }
 
     public Session(int startH, int startM, int endH, int endM, Days day) {
         this.startM = startM;
@@ -56,6 +59,6 @@ public class Session {
 
     @Override
     public String toString() {
-        return day + ", " + startH+ ":"+startM+" ~ "+endH + ":" + endM;
+        return day + "/ " + startH+ ":"+startM+" ~ "+endH + ":" + endM;
     }
 }

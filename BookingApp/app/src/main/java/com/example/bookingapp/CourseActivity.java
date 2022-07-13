@@ -39,7 +39,18 @@ public class CourseActivity extends AppCompatActivity {
         addSession = findViewById(R.id.button_addSession);
         deleteSession = findViewById(R.id.button_deleteSession);
         cdb = new CourseDb(this);
-
+        final Intent[] intent = {getIntent()};
+        String userName = intent[0].getStringExtra("userName");
+        String role = intent[0].getStringExtra("role");
+        deleteSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent[0] = new Intent(getApplicationContext(), SessionActivity.class);
+                intent[0].putExtra("userName", userName);
+                intent[0].putExtra("role", role);
+                startActivity(intent[0]);
+            }
+        });
 
         addCapAndDes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,16 +141,20 @@ public class CourseActivity extends AppCompatActivity {
 
     private Days stringToDays(String str) {
         switch (str) {
-            case "Monday":
+            case "SU":
+                return Days.Sunday;
+            case "MO":
                 return Days.Monday;
-            case "Tuesday":
+            case "TU":
                 return Days.Tuesday;
-            case "Wednesday":
+            case "WE":
                 return Days.Wednesday;
-            case "Thursday":
+            case "TH":
                 return Days.Thursday;
-            default:
+            case "FR":
                 return Days.Friday;
+            default:
+                return Days.Saturday;
         }
 
 

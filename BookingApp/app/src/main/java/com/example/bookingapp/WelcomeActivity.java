@@ -23,8 +23,15 @@ public class WelcomeActivity extends AppCompatActivity {
         String fName = intent[0].getStringExtra("firstName");
         String uName = intent[0].getStringExtra("userName");
         String role = intent[0].getStringExtra("role");
+        String message;
 
-        String message = "Welcome " + fName + "/" + uName + "!\nYou are logged in as " + role;
+        if(role.charAt(0) == '1'){
+
+            message = intent[0].getStringExtra("Des");
+        }else {
+            message = "Welcome " + fName + "/" + uName + "!\nYou are logged in as " + role;
+        }
+
 
         welcomeMsg = (TextView) findViewById(R.id.welcomeMsg);
         welcomeMsg.setText(message);
@@ -41,8 +48,10 @@ public class WelcomeActivity extends AppCompatActivity {
                     intent[0] = new Intent(getApplicationContext(), AdminActivity.class);
                 }else if(role.equals("Instructor")){
                     intent[0] = new Intent(getApplicationContext(), InstructorActivity.class);
-                }else {
+                }else if(role.equals("Student")){
                     intent[0] = new Intent(getApplicationContext(), StudentActivity.class);
+                }else {
+                    intent[0] = new Intent(getApplicationContext(), InstructorActivity.class);
                 }
                 intent[0].putExtra("userName", uName);
                 intent[0].putExtra("role", role);

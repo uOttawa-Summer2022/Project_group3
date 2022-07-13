@@ -38,8 +38,9 @@
     <string name="assign">Assign</string>
     <string name="btn_delete">Delete</string>
     <string name="capacity">Capacity:</string>
-    <string name="click_screen_to_continue">Click on screen to continue</string>
+    <string name="click_screen_to_continue">Click on screen to go to your role page</string>
     <string name="create">Create Course</string>
+    <string name="delSession">Delete Session</string>
     <string name="deleteAccount">Delete Account</string>
     <string name="deleteCourse">Delete Course</string>
     <string name="deleteSession">"Delete session "</string>
@@ -49,6 +50,7 @@
     <string name="editCourse">Edit Course</string>
     <string name="editDesAndCapa">Edit</string>
     <string name="endDate">End Date:</string>
+    <string name="goToSearch">Go to Search</string>
     <string name="instructor">instructor</string>
     <string name="modify">Confirm</string>
     <string name="modifyCrs">Modify Course</string>

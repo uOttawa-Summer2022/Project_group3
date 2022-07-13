@@ -2527,6 +2527,7 @@ id DelCourse
 id EditByCode
 id EditByName
 id FUNCTION
+id GotoSearchBtn
 id LogOut
 id META
 id NO_DEBUG
@@ -2596,6 +2597,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addSessionBtn
 id alertTitle
 id aligned
 id all
@@ -2687,6 +2689,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id delSessionBtn
 id deltaRelative
 id dependency_ordering
 id description
@@ -2937,6 +2940,9 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id sessionInfoTxt
+id sessionListView
+id sessionTxt
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -3157,6 +3163,7 @@ layout activity_course
 layout activity_instructor
 layout activity_login
 layout activity_main
+layout activity_session
 layout activity_student
 layout activity_welcome
 layout custom_dialog
@@ -3323,6 +3330,7 @@ string chip_text
 string clear_text_end_icon_content_description
 string click_screen_to_continue
 string create
+string delSession
 string deleteAccount
 string deleteCourse
 string deleteSession
@@ -3336,6 +3344,7 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string goToSearch
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string instructor

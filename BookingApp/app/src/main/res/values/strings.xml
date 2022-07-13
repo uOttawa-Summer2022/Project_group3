@@ -41,7 +41,7 @@
     <string name="addSessionf">Add session</string>
     <string name="deleteSessionf">Delete session</string>
     <string name="unassign">Un-Assign</string>
-    <string name="click_screen_to_continue">Click on screen to continue</string>
+    <string name="click_screen_to_continue">Click on screen to go to your role page</string>
     <string name="Sun">Sun</string>
     <string name="instructor">instructor</string>
     <string name="editCourse">Edit Course</string>
@@ -51,5 +51,7 @@
     <string name="viewAll">View All</string>
     <string name="viewSession">View Session</string>
     <string name="descript">Descript</string>
+    <string name="delSession">Delete Session</string>
+    <string name="goToSearch">Go to Search</string>
 
 </resources>

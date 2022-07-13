@@ -18,9 +18,11 @@ id DelAcc
 id DelCourse
 id EditByCode
 id EditByName
+id GotoSearchBtn
 id LogOut
 id NewCourseCode
 id NewCourseName
+id addSessionBtn
 id assignBtn
 id btnsignin
 id btnsignin1
@@ -37,6 +39,7 @@ id courseSessionDay
 id course_Code
 id course_Name
 id course_listView
+id delSessionBtn
 id description
 id editCourseBtn
 id endTimeHour
@@ -55,6 +58,9 @@ id role_student
 id screenBtn
 id searchByCBtn
 id searchByNBtn
+id sessionInfoTxt
+id sessionListView
+id sessionTxt
 id startTimeHour
 id startTimeMinute
 id textView
@@ -73,6 +79,7 @@ layout activity_course
 layout activity_instructor
 layout activity_login
 layout activity_main
+layout activity_session
 layout activity_student
 layout activity_welcome
 mipmap ic_launcher
@@ -110,6 +117,7 @@ string btn_delete
 string capacity
 string click_screen_to_continue
 string create
+string delSession
 string deleteAccount
 string deleteCourse
 string deleteSession
@@ -119,6 +127,7 @@ string description
 string editCourse
 string editDesAndCapa
 string endDate
+string goToSearch
 string instructor
 string modify
 string modifyCrs
