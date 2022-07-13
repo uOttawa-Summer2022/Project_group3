@@ -36,7 +36,7 @@ public class Course {
         this.capacity=0;
         this.description="";
         this.sessionList = new ArrayList<>();
-        this.instructor = "null";
+        this.instructor = "";
     }
 
     public ArrayList<ArrayList<Session>> getSessionList() {

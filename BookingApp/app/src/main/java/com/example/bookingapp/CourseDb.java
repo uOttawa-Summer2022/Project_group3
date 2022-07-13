@@ -34,7 +34,7 @@ public class CourseDb extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String create_table_cmd = "CREATE TABLE " + TABLE_NAME +
                 "(" + COLUMN_CODE + " TEXT PRIMARY KEY, " +
-                COLUMN_NAME + " TEXT, " +
+                COLUMN_NAME + " TEXT UNIQUE, " +
                 COLUMN_INSTRUCTOR + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_CAPACITY  + " INTEGER, " +
@@ -63,7 +63,7 @@ public class CourseDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " = \"" + code + "\"";
         Cursor cursor = db.rawQuery(query, null);
-        Course course;
+        Course course = null;
 
         if(cursor.moveToFirst()){
             if(byN){
@@ -111,10 +111,10 @@ public class CourseDb extends SQLiteOpenHelper {
                     String[] List2 = List1[0].split(":");
                     String[] List3 = List1[1].split(":");
                     int sH, sM, eH, eM;
-                    sH = (int)Integer.getInteger(List2[0]);
-                    sM = (int)Integer.getInteger(List2[1]);
-                    eH = (int)Integer.getInteger(List3[0]);
-                    eM = (int)Integer.getInteger(List3[1]);
+                    sH = Integer.getInteger(List2[0]);
+                    sM = Integer.getInteger(List2[1]);
+                    eH = Integer.getInteger(List3[0]);
+                    eM = Integer.getInteger(List3[1]);
                     Session session = new Session(sH,sM,eH,eM,days);
                     List4.add(session);
                 }
@@ -270,7 +270,7 @@ public class CourseDb extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()) {
             do {
-                listOfCourses.add(cursor.getString(cursor.getColumnIndex("value")));
+                listOfCourses.add(cursor.getString(1)+":"+cursor.getString(0));
             }while(cursor.moveToNext());
         }
 

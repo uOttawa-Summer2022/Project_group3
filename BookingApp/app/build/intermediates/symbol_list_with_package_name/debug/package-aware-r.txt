@@ -2518,6 +2518,7 @@ id AccName
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
+id CourseTxt
 id Course_Code
 id Course_Name
 id CreateCourse
@@ -2676,6 +2677,7 @@ id courseDescription
 id courseSessionDay
 id course_Code
 id course_Name
+id course_listView
 id currentState
 id custom
 id customPanel
@@ -2687,7 +2689,7 @@ id decor_content_parent
 id default_activity_button
 id deltaRelative
 id dependency_ordering
-id descriptionTxt
+id description
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -3038,6 +3040,8 @@ id useLogo
 id username
 id username1
 id vertical_only
+id viewAll
+id viewSessionBtn
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
@@ -3323,6 +3327,7 @@ string deleteAccount
 string deleteCourse
 string deleteSession
 string deleteSessionf
+string descript
 string description
 string editCourse
 string editDesAndCapa
@@ -3421,6 +3426,8 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string unassign
 string username
+string viewAll
+string viewSession
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow
