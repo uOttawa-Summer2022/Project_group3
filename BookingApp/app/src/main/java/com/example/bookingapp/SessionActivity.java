@@ -25,6 +25,7 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
     CourseDb cdb;
     Course course;
     String session;
+    int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +43,17 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
         course = InstructorActivity.course;
 
         cdb = new CourseDb(this);
-        sessionList = InstructorActivity.sessionList;
-        sessionListS = arrayConvert(sessionList);
-        loadSessionListView(sessionListS);
+
+        sessionList = course.getSessionList();
+        //sessionListS = arrayConvert(sessionList);
+        //loadSessionListView(sessionListS);
+
         final Intent[] intent = {getIntent()};
 
 
         String userName = intent[0].getStringExtra("userName");
         String role = intent[0].getStringExtra("role");
-
+        printSession();
 
         sessionListView.setOnItemClickListener(this);
 
@@ -60,18 +63,35 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
                 if(course.getInstructor() != null && course.getInstructor().equals(userName)){
                     Toast.makeText(SessionActivity.this, "Permitted", Toast.LENGTH_SHORT).show();
                     intent[0] = new Intent(getApplicationContext(), CourseActivity.class);
+                    intent[0].putExtra("userName", userName);
+                    intent[0].putExtra("role", role);
                     startActivity(intent[0]);
                 }else{
                     Toast.makeText(SessionActivity.this, "Not-Permitted", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
         delSessionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(course.getInstructor() != null && course.getInstructor().equals(userName)){
                     if(session != null){
+                        int n = 0, j = 0, temp = 0;
 
+
+                        while(n >= 0) {
+                            temp = n;
+                            n = position - course.getSessionDayIndex()[j];
+                            j++;
+                        }
+                        j--;
+                        sessionList.get(j).remove(temp);
+                        cdb.delSession(course.getCode(), Days.numToDays(j), arrayToString2(sessionList.get(j)));
+
+
+                    }else {
+                        Toast.makeText(SessionActivity.this, "No Selected Session", Toast.LENGTH_SHORT).show();
                     }
                     Toast.makeText(SessionActivity.this, "Permitted", Toast.LENGTH_SHORT).show();
 
@@ -105,16 +125,21 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
     }
 
     private void loadSessionListView(ArrayList<String> n){
+        course = cdb.searchCourse(course.getCode(),false);
+        sessionList = course.getSessionList();
+        sessionListS = arrayConvert(sessionList);
+
         sessionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,n);
         sessionListView.setAdapter(sessionAdapter);
     }
 
     private boolean printSession(){
-        if(session == null){
-            Toast.makeText(this, "Session not Selected", Toast.LENGTH_SHORT).show();
+        if(sessionList == null){
+            Toast.makeText(this, "No Session In This Course", Toast.LENGTH_SHORT).show();
             return false;
         }
-        sessionInfoTxt.setText(session.toString());
+
+        sessionInfoTxt.setText(sessionList.toString());
         return true;
     }
 
@@ -122,8 +147,14 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         session = sessionListS.get(position);
+        this.position = position;
         printSession();
 
 
+    }
+
+    public String arrayToString2(ArrayList<Session> A){
+        String As = A.toString();
+        return As.substring(1, As.length()-1);
     }
 }

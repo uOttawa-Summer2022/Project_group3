@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Time;
+
 public class CourseActivity extends AppCompatActivity {
     EditText sir;
     EditText courseCapacity, courseDescription, courseSessionDay, startTimeHour, endTimeHour, startTimeMinute, endTimeMinute;
@@ -119,12 +121,12 @@ public class CourseActivity extends AppCompatActivity {
                 if (day.isEmpty() || sH.isEmpty() || sM.isEmpty() || eH.isEmpty() || eM.isEmpty()) {
                     Toast.makeText(CourseActivity.this, "fill all fields ", Toast.LENGTH_SHORT).show();
 
-                } else if (!day.equals("Monday") && !day.equals("Tuesday") && !day.equals("Wednesday") && !day.equals("Thursday") && !day.equals("Friday")) {
+                } else if (!day.equals("SU") && !day.equals("MO") && !day.equals("TU") && !day.equals("WE") && !day.equals("TH") && !day.equals("FR") && !day.equals("SA")) {
                     Toast.makeText(CourseActivity.this, "enter a valid day", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Session session = new Session(Integer.parseInt(sH), Integer.parseInt(sM), Integer.parseInt(eH), Integer.parseInt(eM), stringToDays(day));
-                    boolean addSession = cdb.AddSession(InstructorActivity.course.getCode(), new Session[]{session});
+                    Session session = new Session(Integer.parseInt(sH), Integer.parseInt(sM), Integer.parseInt(eH), Integer.parseInt(eM), Days.stringToDays(day));
+                    boolean addSession = cdb.AddSession(InstructorActivity.course.getCode(), session);
 
                     if (addSession) {
                         Toast.makeText(CourseActivity.this, "Session add successful", Toast.LENGTH_SHORT).show();
@@ -139,24 +141,5 @@ public class CourseActivity extends AppCompatActivity {
     }
     //EditTexts
 
-    private Days stringToDays(String str) {
-        switch (str) {
-            case "SU":
-                return Days.Sunday;
-            case "MO":
-                return Days.Monday;
-            case "TU":
-                return Days.Tuesday;
-            case "WE":
-                return Days.Wednesday;
-            case "TH":
-                return Days.Thursday;
-            case "FR":
-                return Days.Friday;
-            default:
-                return Days.Saturday;
-        }
 
-
-    }
 }

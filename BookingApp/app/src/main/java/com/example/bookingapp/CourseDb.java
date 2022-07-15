@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 
 public class CourseDb extends SQLiteOpenHelper {
@@ -26,6 +24,7 @@ public class CourseDb extends SQLiteOpenHelper {
     private static final String COLUMN_SESSION_ON_SAT = "sessionOnSat";
     private static final String DATABASE_NAME = "courses.db";
     private Cursor courseCursor;
+    private int[] sessionDayIndex;
     public CourseDb( Context context){
         super(context, DATABASE_NAME,null,1);
     }
@@ -54,8 +53,9 @@ public class CourseDb extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    @SuppressLint("Range")
+
     public Course searchCourse(String code, boolean byN){
+        sessionDayIndex = new int[7];
         String col = COLUMN_CODE;
         if(byN){
             col = COLUMN_NAME;
@@ -64,72 +64,54 @@ public class CourseDb extends SQLiteOpenHelper {
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " = \"" + code + "\"";
         Cursor cursor = db.rawQuery(query, null);
         Course course = null;
-
+        ArrayList<Session> List4 = new ArrayList<>();;
+        ArrayList<ArrayList<Session>> finalsList = new ArrayList<>();;
         if(cursor.moveToFirst()){
             if(byN){
                 course = new Course(cursor.getString(0), code);
             }else {
-
                 course = new Course(code, cursor.getString(1));
             }
-
 
             course.setInstructor(cursor.getString(2));
             course.setDescription(cursor.getString(3));
             course.setCapacity(cursor.getInt(4));
 
 
-            ArrayList<ArrayList<Session>> sessionList = new ArrayList<>();
-            for(int i = 5; i < 11;i++){
-                Days days;
-                switch (i){
-                    case 5:
-                        days = Days.Sunday;
-                    case 6:
-                        days = Days.Monday;
-                    case 7:
-                        days = Days.Tuesday;
-                    case 8:
-                        days = Days.Wednesday;
-                    case 9:
-                        days = Days.Thursday;
-                    case 10:
-                        days = Days.Friday;
-                    default:
-                        days = Days.Saturday;
-                }
+            for(int i = 5; i < 12;i++){
                 String temp = cursor.getString(i);
-                if(temp==null){
-                    sessionList.add(null);
+                if(temp == null||temp.equals("null")){
+                    List4.add(null);
                     continue;
                 }
-                String[] sessionDayList = temp.split("/");
-                ArrayList<Session> List4 = new ArrayList<>();
+                String[] list = temp.split(", ");
+                int n = 0;
+                while (n < list.length){
+                    String[] list0 = list[n].split("/ ");
+                    String[] list1 = list0[1].split(" ~ ");
+                    String[] list2 = list1[0].split(":");
+                    String[] list3 = list1[1].split(":");
 
-                for(int j = 0;j<sessionDayList.length;j++){
-                    String[] List1 = sessionDayList[j].split("-");
-                    String[] List2 = List1[0].split(":");
-                    String[] List3 = List1[1].split(":");
-                    int sH, sM, eH, eM;
-                    sH = Integer.getInteger(List2[0]);
-                    sM = Integer.getInteger(List2[1]);
-                    eH = Integer.getInteger(List3[0]);
-                    eM = Integer.getInteger(List3[1]);
-                    Session session = new Session(sH,sM,eH,eM,days);
-                    List4.add(session);
+                    List4.add( new Session( Integer.parseInt(list2[0]),
+                                            Integer.parseInt(list2[1]),
+                                            Integer.parseInt(list3[0]),
+                                            Integer.parseInt(list3[1]),
+                                            Days.stringToDays(list0[0])));
+                    n++;
                 }
-                sessionList.add(List4);
+
+                finalsList.add(List4);
+                sessionDayIndex[i-5] = n;
 
             }
-
-
-        }else {
-            return null;
+            course.setSessionList(finalsList);
+            course.setSessionDayIndex(sessionDayIndex);
         }
+
         db.close();
+
         return course;
     }
-
 
 
     public Boolean AddCourse(Course course){
@@ -206,7 +188,7 @@ public class CourseDb extends SQLiteOpenHelper {
         return true;
     }
 
-    public Boolean AddSession(String code, Session[] session){
+    public Boolean AddSession(String code, Session session){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
@@ -215,29 +197,8 @@ public class CourseDb extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             result = true;
             ContentValues contentValues = new ContentValues();
-            for(int i = 0; i < session.length;i++) {
-                switch (session[i].getDay()) {
-                    case Sunday:
-                        col = COLUMN_SESSION_ON_SUN;
-                    case Tuesday:
-                        col = COLUMN_SESSION_ON_TUE;
-                    case Wednesday:
-                        col = COLUMN_SESSION_ON_WED;
-                    case Thursday:
-                        col = COLUMN_SESSION_ON_THU;
-                    case Friday:
-                        col = COLUMN_SESSION_ON_FRI;
-                    case Saturday:
-                        col = COLUMN_SESSION_ON_SAT;
-                    default:
-                        col = COLUMN_SESSION_ON_MON;
-                }
-                @SuppressLint("Range") String oldSessionData = cursor.getString(cursor.getColumnIndex(col));
-                String newSessionData = session[i].toString() + "/";
-                contentValues.put(col, oldSessionData + newSessionData);
-
-
-            }
+            col = daysToCol(session.getDay());
+            contentValues.put(col,session.toString());
             db.update(TABLE_NAME, contentValues, COLUMN_CODE + "=?", new String[]{code});
             cursor.close();
         }
@@ -250,23 +211,8 @@ public class CourseDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
         Cursor cursor = db.rawQuery(query, null);
-        String col;
-        switch (days) {
-            case Sunday:
-                col = COLUMN_SESSION_ON_SUN;
-            case Tuesday:
-                col = COLUMN_SESSION_ON_TUE;
-            case Wednesday:
-                col = COLUMN_SESSION_ON_WED;
-            case Thursday:
-                col = COLUMN_SESSION_ON_THU;
-            case Friday:
-                col = COLUMN_SESSION_ON_FRI;
-            case Saturday:
-                col = COLUMN_SESSION_ON_SAT;
-            default:
-                col = COLUMN_SESSION_ON_MON;
-        }
+        String col = daysToCol(days);
+
         if(cursor.moveToFirst()){
             result = true;
             ContentValues contentValues = new ContentValues();
@@ -288,7 +234,7 @@ public class CourseDb extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             String codeStr = cursor.getString(0);
             result = true;
-            db.delete(TABLE_NAME, COLUMN_NAME + "=?", new String[]{codeStr});
+            db.delete(TABLE_NAME, COLUMN_CODE + "=?", new String[]{codeStr});
             cursor.close();
         }
         db.close();
@@ -312,6 +258,25 @@ public class CourseDb extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return listOfCourses;
+    }
+
+    private String daysToCol(Days days){
+        switch (days) {
+            case Sunday:
+                return COLUMN_SESSION_ON_SUN;
+            case Tuesday:
+                return COLUMN_SESSION_ON_TUE;
+            case Wednesday:
+                return COLUMN_SESSION_ON_WED;
+            case Thursday:
+                return COLUMN_SESSION_ON_THU;
+            case Friday:
+                return COLUMN_SESSION_ON_FRI;
+            case Saturday:
+                return COLUMN_SESSION_ON_SAT;
+            default:
+                return COLUMN_SESSION_ON_MON;
+        }
     }
 
 }

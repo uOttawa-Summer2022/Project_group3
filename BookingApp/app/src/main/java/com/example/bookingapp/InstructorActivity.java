@@ -21,10 +21,11 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
     EditText course_Code, course_Name;
     Button searchByNBtn, searchByCBtn, logOut, unAssignBtn, assignBtn, editCourseBtn, viewAll, descript, viewSession;
     ArrayList<String> courseList;
-    static ArrayList<ArrayList<Session>> sessionList;
+    ArrayList<ArrayList<Session>> sessionList;
     ListView courseListView;
     ArrayAdapter<String> allCourseAdapter;
     static Course course;
+    static String courseCodeString;
 
     CourseDb cdb;
     @Override
@@ -67,10 +68,11 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
         welcomeMsg.setText(role+" "+userName);
         if(course != null){
             course = cdb.searchCourse(course.getCode(), false);
+            CourseTxt.setText("Course: "+ course.getName()+" "+course.getCode());
+            instructorTxt.setText("Instructor: " + course.getInstructor());
+            capacityTxt.setText("Capacity: "+ course.getCapacity());
         }
-        CourseTxt.setText("Course: "+ course.getName()+" "+course.getCode());
-        instructorTxt.setText("Instructor: " + course.getInstructor());
-        capacityTxt.setText("Capacity: "+ course.getCapacity());
+
 
         searchByCBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,8 +226,8 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String code =courseList.get(position).split(":")[1];
-        course = cdb.searchCourse(code, false);
+        String code = courseList.get(position).split(":")[1].trim();
+        course = cdb.searchCourse(code,false);
 
         Toast.makeText(this, courseList.get(position), Toast.LENGTH_SHORT).show();
         printCourse();

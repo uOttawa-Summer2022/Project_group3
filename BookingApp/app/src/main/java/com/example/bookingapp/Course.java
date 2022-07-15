@@ -7,11 +7,19 @@ import java.util.ArrayList;
 public class Course {
     private String code;
     private String name;
+    private int[] SessionDayIndex;
     private ArrayList<ArrayList<Session>> sessionList;
     private int capacity;
     private String description;
     private String instructor;
 
+    public int[] getSessionDayIndex() {
+        return SessionDayIndex;
+    }
+
+    public void setSessionDayIndex(int[] sessionDayIndex) {
+        SessionDayIndex = sessionDayIndex;
+    }
 
     public void setSessionList(ArrayList<ArrayList<Session>> sessionList) {
         this.sessionList = sessionList;

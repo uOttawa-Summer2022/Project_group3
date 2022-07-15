@@ -57,8 +57,18 @@ public class Session {
         this.day = day;
     }
 
+    public String intTimeToSting(int n){
+        if(n == 0)
+            return "00";
+        return Integer.toString(n);
+    }
+
     @Override
     public String toString() {
-        return day + "/ " + startH+ ":"+startM+" ~ "+endH + ":" + endM;
+        return day + "/ " +
+                intTimeToSting(startH)+ ":" +
+                intTimeToSting(startM)+" ~ "+
+                intTimeToSting(endH) + ":" +
+                intTimeToSting(endM);
     }
 }

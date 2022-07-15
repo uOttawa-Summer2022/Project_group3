@@ -21,7 +21,7 @@ public class WelcomeActivity extends AppCompatActivity {
         final Intent[] intent = {getIntent()};
 
         String fName = intent[0].getStringExtra("firstName");
-        String uName = intent[0].getStringExtra("userName");
+        String userName = intent[0].getStringExtra("userName");
         String role = intent[0].getStringExtra("role");
         String message;
 
@@ -29,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
             message = intent[0].getStringExtra("Des");
         }else {
-            message = "Welcome " + fName + "/" + uName + "!\nYou are logged in as " + role;
+            message = "Welcome " + fName + "/" + userName + "!\nYou are logged in as " + role;
         }
 
 
@@ -53,7 +53,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 }else {
                     intent[0] = new Intent(getApplicationContext(), InstructorActivity.class);
                 }
-                intent[0].putExtra("userName", uName);
+                intent[0].putExtra("userName", userName);
                 intent[0].putExtra("role", role);
                 startActivity(intent[0]);
             }
