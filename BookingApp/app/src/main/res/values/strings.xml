@@ -51,5 +51,9 @@
     <string name="viewAll">View All</string>
     <string name="viewSession">View Session</string>
     <string name="descript">Descript</string>
+    <string name="CourseDay">Day</string>
+    <string name="searchByDay">SEARCH BY DAY</string>
+    <string name="enroll">ENROLL</string>
+    <string name="unenroll">UNENROLL</string>
 
 </resources>
