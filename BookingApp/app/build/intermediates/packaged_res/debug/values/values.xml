@@ -48,7 +48,7 @@
     <string name="descript">Descript</string>
     <string name="description">Description:</string>
     <string name="editCourse">Edit Course</string>
-    <string name="editDesAndCapa">Edit</string>
+    <string name="editDesAndCapa">Save</string>
     <string name="endDate">End Date:</string>
     <string name="goToSearch">Go to Search</string>
     <string name="instructor">instructor</string>

@@ -8,20 +8,16 @@
         "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\layout\\activity_session.xml"
     },
     {
-        "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\layout\\activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.bookingapp-merged_res-25:/layout_activity_session.xml.flat",
-        "source": "com.example.bookingapp-main-27:/layout/activity_session.xml"
+        "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.bookingapp-merged_res-25:/layout_activity_session.xml.flat",
+        "source": "com.example.bookingapp-main-27:/layout/activity_session.xml"
     },
     {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\layout_activity_student.xml.flat",
@@ -30,6 +26,10 @@
     {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\layout_activity_instructor.xml.flat",
         "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\layout\\activity_instructor.xml"
+    },
+    {
+        "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -68,16 +68,20 @@
         "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\layout\\activity_course.xml"
     },
     {
-        "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\mipmap-hdpi\\ic_launcher_round.webp"
-    },
-    {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-hdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\layout_activity_admin.xml.flat",
         "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\layout\\activity_admin.xml"
+    },
+    {
+        "merged": "com.example.bookingapp-merged_res-25:/layout_activity_course.xml.flat",
+        "source": "com.example.bookingapp-main-27:/layout/activity_course.xml"
     },
     {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",

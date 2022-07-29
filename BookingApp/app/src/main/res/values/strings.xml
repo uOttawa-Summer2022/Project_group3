@@ -34,7 +34,7 @@
     <string name="assign">Assign</string>
     <string name="CourseManagement">Modify Course Info</string>
     <string name="addDesAndCapa">"Add"</string>
-    <string name="editDesAndCapa">Edit</string>
+    <string name="editDesAndCapa">Save</string>
     <string name="addDesAndCapac">Add</string>
     <string name="deleteSession">"Delete session "</string>
     <string name="addSession">Add session</string>

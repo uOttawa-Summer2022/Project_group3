@@ -2,17 +2,11 @@ package com.example.bookingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.sql.Time;
 
 public class CourseActivity extends AppCompatActivity {
     EditText sir;
@@ -36,7 +30,7 @@ public class CourseActivity extends AppCompatActivity {
 
         goBackInstructorActivity = findViewById(R.id.button_goBackInstructorActivity);
 
-        addCapAndDes = findViewById(R.id.button_AddCapAndDes);
+
         editCapAndDes = findViewById(R.id.button_EditCapAndDes);
         addSession = findViewById(R.id.button_addSession);
         deleteSession = findViewById(R.id.button_deleteSession);
@@ -54,30 +48,7 @@ public class CourseActivity extends AppCompatActivity {
             }
         });
 
-        addCapAndDes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String courseDescription1 = courseDescription.getText().toString();
-                String courseCapacity1 = courseCapacity.getText().toString();
-                if (!(courseCapacity1.matches("[0-9]+") && (Integer.parseInt(courseCapacity1) > 0))) {
-                    Toast.makeText(CourseActivity.this, " Capacity must be Integer positive ", Toast.LENGTH_SHORT).show();
-                } else if (courseCapacity1.isEmpty() || courseDescription1.isEmpty()) {
-                    Toast.makeText(CourseActivity.this, " FILL THE DESCRIPTION AND CAPACITY ", Toast.LENGTH_SHORT).show();
 
-                } else {
-
-                    boolean FCap = cdb.editCrsCapacity(InstructorActivity.course.getCode(), Integer.parseInt(courseCapacity1));
-                    boolean FDes = cdb.editCrsDescription(InstructorActivity.course.getCode(), courseDescription1);
-                    if (FDes && FCap) {
-                        Toast.makeText(CourseActivity.this, " added successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(CourseActivity.this, "add unsuccessful", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-            }
-        });
 
 
         editCapAndDes.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +82,7 @@ public class CourseActivity extends AppCompatActivity {
         addSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String day = courseSessionDay.getText().toString();
+                /*String day = courseSessionDay.getText().toString();
                 String sH = startTimeHour.getText().toString();
                 String sM = startTimeMinute.getText().toString();
                 String eH = endTimeHour.getText().toString();
@@ -126,7 +97,7 @@ public class CourseActivity extends AppCompatActivity {
 
                 } else {
                     Session session = new Session(Integer.parseInt(sH), Integer.parseInt(sM), Integer.parseInt(eH), Integer.parseInt(eM), Days.stringToDays(day));
-                    boolean addSession = cdb.AddSession(InstructorActivity.course.getCode(), session);
+                    boolean addSession = cdb.overwriteSession(InstructorActivity.course.getCode(), session);
 
                     if (addSession) {
                         Toast.makeText(CourseActivity.this, "Session add successful", Toast.LENGTH_SHORT).show();
@@ -134,12 +105,14 @@ public class CourseActivity extends AppCompatActivity {
                         Toast.makeText(CourseActivity.this, "Session add unsuccessful", Toast.LENGTH_SHORT).show();
                     }
                 }
+
+                 */
             }
         });
 
 
     }
-    //EditTexts
+
 
 
 }

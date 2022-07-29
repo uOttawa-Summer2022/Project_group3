@@ -5,17 +5,17 @@ public enum Days {
 
     public static Days stringToDays(String str) {
         switch (str) {
-            case "SU":
+            case "Sunday":
                 return Days.Sunday;
-            case "MO":
+            case "Monday":
                 return Days.Monday;
-            case "TU":
+            case "Tuesday":
                 return Days.Tuesday;
             case "WE":
                 return Days.Wednesday;
-            case "TH":
+            case "Thursday":
                 return Days.Thursday;
-            case "FR":
+            case "Friday":
                 return Days.Friday;
             default:
                 return Days.Saturday;

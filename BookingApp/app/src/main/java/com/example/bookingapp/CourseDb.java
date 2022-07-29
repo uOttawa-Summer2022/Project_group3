@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CourseDb extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "courses";
@@ -15,19 +17,16 @@ public class CourseDb extends SQLiteOpenHelper {
     private static final String COLUMN_INSTRUCTOR = "instructor";
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_CAPACITY = "Capacity";
-    private static final String COLUMN_SESSION_ON_SUN = "sessionOnSun";
-    private static final String COLUMN_SESSION_ON_MON = "sessionOnMon";
-    private static final String COLUMN_SESSION_ON_TUE = "sessionOnTue";
-    private static final String COLUMN_SESSION_ON_WED = "sessionOnWed";
-    private static final String COLUMN_SESSION_ON_THU = "sessionOnThu";
-    private static final String COLUMN_SESSION_ON_FRI = "sessionOnFri";
-    private static final String COLUMN_SESSION_ON_SAT = "sessionOnSat";
+    private static final String COLUMN_SESSION = "session";
+    private static final String COLUMN_STUDENT = "student";
+
     private static final String DATABASE_NAME = "courses.db";
     private Cursor courseCursor;
     private int[] sessionDayIndex;
     public CourseDb( Context context){
         super(context, DATABASE_NAME,null,1);
     }
+    public static String strSeparator = ",";
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -37,13 +36,8 @@ public class CourseDb extends SQLiteOpenHelper {
                 COLUMN_INSTRUCTOR + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_CAPACITY  + " INTEGER, " +
-                COLUMN_SESSION_ON_SUN + " TEXT, " +
-                COLUMN_SESSION_ON_MON + " TEXT, " +
-                COLUMN_SESSION_ON_TUE + " TEXT, " +
-                COLUMN_SESSION_ON_WED + " TEXT, " +
-                COLUMN_SESSION_ON_THU + " TEXT, " +
-                COLUMN_SESSION_ON_FRI + " TEXT, " +
-                COLUMN_SESSION_ON_SAT + " TEXT" + ")";
+                COLUMN_SESSION +  " TEXT, " +
+                COLUMN_STUDENT +  " TEXT" +")";
         sqLiteDatabase.execSQL(create_table_cmd);
     }
 
@@ -64,8 +58,8 @@ public class CourseDb extends SQLiteOpenHelper {
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " = \"" + code + "\"";
         Cursor cursor = db.rawQuery(query, null);
         Course course = null;
-        ArrayList<Session> List4 = new ArrayList<>();;
-        ArrayList<ArrayList<Session>> finalsList = new ArrayList<>();;
+        ArrayList<Session> sessionList = new ArrayList<>();;
+
         if(cursor.moveToFirst()){
             if(byN){
                 course = new Course(cursor.getString(0), code);
@@ -74,40 +68,23 @@ public class CourseDb extends SQLiteOpenHelper {
             }
 
             course.setInstructor(cursor.getString(2));
-            course.setDescription(cursor.getString(3));
+            course.setDescription(cursor.getString(5));
             course.setCapacity(cursor.getInt(4));
-
-
-            for(int i = 5; i < 12;i++){
-                String temp = cursor.getString(i);
-                if(temp == null||temp.equals("null")){
-                    List4.add(null);
-                    continue;
+            String sessionString = cursor.getString(5);
+            if(sessionString == null||sessionString.equals("null")){
+                course.setSessionList(null);
+            }else {
+                String[] tempA = convertStringToArray(sessionString);
+                for (String tempS:tempA) {
+                    sessionList.add(new Session(tempS));
                 }
-                String[] list = temp.split(", ");
-                int n = 0;
-                while (n < list.length){
-                    String[] list0 = list[n].split("/ ");
-                    String[] list1 = list0[1].split(" ~ ");
-                    String[] list2 = list1[0].split(":");
-                    String[] list3 = list1[1].split(":");
-
-                    List4.add( new Session( Integer.parseInt(list2[0]),
-                                            Integer.parseInt(list2[1]),
-                                            Integer.parseInt(list3[0]),
-                                            Integer.parseInt(list3[1]),
-                                            Days.stringToDays(list0[0])));
-                    n++;
-                }
-
-                finalsList.add(List4);
-                sessionDayIndex[i-5] = n;
-
+                course.setSessionList(sessionList);
             }
-            course.setSessionList(finalsList);
-            course.setSessionDayIndex(sessionDayIndex);
-        }
 
+
+
+        }
+        cursor.close();
         db.close();
 
         return course;
@@ -178,30 +155,24 @@ public class CourseDb extends SQLiteOpenHelper {
         db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
         return true;
     }
+
     public boolean editCrsCapacity(String code, int capacity){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-
         contentValues.put(COLUMN_CAPACITY, capacity);
         db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
         return true;
     }
 
-    public Boolean AddSession(String code, Session session){
+    public Boolean overwriteSession(String code, String overwriteString){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
-        Cursor cursor = db.rawQuery(query, null);
-        String col;
-        if(cursor.moveToFirst()) {
-            result = true;
-            ContentValues contentValues = new ContentValues();
-            col = daysToCol(session.getDay());
-            contentValues.put(col,session.toString());
-            db.update(TABLE_NAME, contentValues, COLUMN_CODE + "=?", new String[]{code});
-            cursor.close();
-        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_SESSION, overwriteString);
+        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
         db.close();
         return result;
     }
@@ -211,7 +182,7 @@ public class CourseDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
         Cursor cursor = db.rawQuery(query, null);
-        String col = daysToCol(days);
+        String col = COLUMN_SESSION;
 
         if(cursor.moveToFirst()){
             result = true;
@@ -259,24 +230,28 @@ public class CourseDb extends SQLiteOpenHelper {
         db.close();
         return listOfCourses;
     }
-
-    private String daysToCol(Days days){
-        switch (days) {
-            case Sunday:
-                return COLUMN_SESSION_ON_SUN;
-            case Tuesday:
-                return COLUMN_SESSION_ON_TUE;
-            case Wednesday:
-                return COLUMN_SESSION_ON_WED;
-            case Thursday:
-                return COLUMN_SESSION_ON_THU;
-            case Friday:
-                return COLUMN_SESSION_ON_FRI;
-            case Saturday:
-                return COLUMN_SESSION_ON_SAT;
-            default:
-                return COLUMN_SESSION_ON_MON;
+    public static String convertArrayToString(String[] array){
+        String str = "";
+        for (int i = 0;i<array.length; i++) {
+            str = str+array[i];
+            // Do not append comma at the end of last element
+            if(i<array.length-1){
+                str = str+strSeparator;
+            }
         }
+        return str;
+    }
+    public static String[] convertStringToArray(String str){
+        if(str.substring(0,1).equals("[")){
+            str = str.substring(1,str.length());
+        }
+        if(str.substring(str.length()-1).equals("]")){
+            str = str.substring(0 ,str.length()-1);
+        }
+
+        return str.split(strSeparator);
     }
 
+
 }
+

@@ -21,7 +21,7 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
     EditText course_Code, course_Name;
     Button searchByNBtn, searchByCBtn, logOut, unAssignBtn, assignBtn, editCourseBtn, viewAll, descript, viewSession;
     ArrayList<String> courseList;
-    ArrayList<ArrayList<Session>> sessionList;
+    ArrayList<Session> sessionList;
     ListView courseListView;
     ArrayAdapter<String> allCourseAdapter;
     static Course course;
@@ -231,6 +231,7 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
 
         Toast.makeText(this, courseList.get(position), Toast.LENGTH_SHORT).show();
         printCourse();
+        CourseTxt.setText(course.getSessionList().toString());
 
     }
 }

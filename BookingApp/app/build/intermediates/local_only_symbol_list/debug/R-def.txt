@@ -27,7 +27,6 @@ id assignBtn
 id btnsignin
 id btnsignin1
 id btnsignup
-id button_AddCapAndDes
 id button_EditCapAndDes
 id button_addSession
 id button_deleteSession
