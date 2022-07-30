@@ -7,13 +7,30 @@ import java.util.ArrayList;
 public class Course {
     private String code;
     private String name;
-    private ArrayList<ArrayList<Session>> sessionList;
+    private int[] SessionDayIndex;
+    private ArrayList<Session> sessionList;
+    private ArrayList<String> studentNameList;
     private int capacity;
     private String description;
     private String instructor;
 
+    public ArrayList<String> getStudentNameList() {
+        return studentNameList;
+    }
 
-    public void setSessionList(ArrayList<ArrayList<Session>> sessionList) {
+    public void setStudentNameList(ArrayList<String> studentNameList) {
+        this.studentNameList = studentNameList;
+    }
+
+    public int[] getSessionDayIndex() {
+        return SessionDayIndex;
+    }
+
+    public void setSessionDayIndex(int[] sessionDayIndex) {
+        SessionDayIndex = sessionDayIndex;
+    }
+
+    public void setSessionList(ArrayList<Session> sessionList) {
         this.sessionList = sessionList;
     }
 
@@ -36,10 +53,11 @@ public class Course {
         this.capacity=0;
         this.description="";
         this.sessionList = new ArrayList<>();
+        this.studentNameList = new ArrayList<>();
         this.instructor = "";
     }
 
-    public ArrayList<ArrayList<Session>> getSessionList() {
+    public ArrayList<Session> getSessionList() {
         return sessionList;
     }
 

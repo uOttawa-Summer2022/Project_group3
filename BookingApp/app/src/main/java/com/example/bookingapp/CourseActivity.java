@@ -2,22 +2,22 @@ package com.example.bookingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class CourseActivity extends AppCompatActivity {
     EditText sir;
     EditText courseCapacity, courseDescription, courseSessionDay, startTimeHour, endTimeHour, startTimeMinute, endTimeMinute;
-    Button goBackInstructorActivity, deleteSession, addSession, logOut, editCapAndDes, addCapAndDes;
+    Button goBackInstructorActivity, deleteSession, addSession, logOut, editCapAndDes;
     com.example.bookingapp.CourseDb cdb;
     Course course;
+    ArrayList<Session> sessionsList;
     com.example.bookingapp.AccountDB adb;
 
     @Override
@@ -25,46 +25,42 @@ public class CourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
         courseCapacity = (EditText) findViewById(R.id.courseCapacity);
-        courseDescription = findViewById(R.id.courseDescription);
-        courseSessionDay = findViewById(R.id.courseSessionDay);
-        startTimeHour = findViewById(R.id.startTimeHour);
-        startTimeMinute = findViewById(R.id.startTimeMinute);
-        endTimeHour = findViewById(R.id.endTimeHour);
-        endTimeMinute = findViewById(R.id.endTimeMinute);
+        courseDescription = (EditText)findViewById(R.id.courseDescription);
+
+        courseSessionDay = (EditText) findViewById(R.id.courseSessionDay);
+        startTimeHour = (EditText) findViewById(R.id.startTimeHour);
+        startTimeMinute = (EditText) findViewById(R.id.startTimeMinute);
+        endTimeHour = (EditText) findViewById(R.id.endTimeHour);
+        endTimeMinute = (EditText) findViewById(R.id.endTimeMinute);
 
         goBackInstructorActivity = findViewById(R.id.button_goBackInstructorActivity);
 
-        addCapAndDes = findViewById(R.id.button_AddCapAndDes);
+
         editCapAndDes = findViewById(R.id.button_EditCapAndDes);
         addSession = findViewById(R.id.button_addSession);
         deleteSession = findViewById(R.id.button_deleteSession);
+
+        logOut = (Button) findViewById(R.id.logOut);
+
         cdb = new CourseDb(this);
+        final Intent[] intent = {getIntent()};
+        String userName = intent[0].getStringExtra("userName");
+        String role = intent[0].getStringExtra("role");
 
+        course = InstructorActivity.course;
+        sessionsList = course.getSessionList();
 
-        addCapAndDes.setOnClickListener(new View.OnClickListener() {
+        deleteSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String courseDescription1 = courseDescription.getText().toString();
-                String courseCapacity1 = courseCapacity.getText().toString();
-                if (!(courseCapacity1.matches("[0-9]+") && (Integer.parseInt(courseCapacity1) > 0))) {
-                    Toast.makeText(CourseActivity.this, " Capacity must be Integer positive ", Toast.LENGTH_SHORT).show();
-                } else if (courseCapacity1.isEmpty() || courseDescription1.isEmpty()) {
-                    Toast.makeText(CourseActivity.this, " FILL THE DESCRIPTION AND CAPACITY ", Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    boolean FCap = cdb.editCrsCapacity(InstructorActivity.course.getCode(), Integer.parseInt(courseCapacity1));
-                    boolean FDes = cdb.editCrsDescription(InstructorActivity.course.getCode(), courseDescription1);
-                    if (FDes && FCap) {
-                        Toast.makeText(CourseActivity.this, " added successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(CourseActivity.this, "add unsuccessful", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
+                intent[0] = new Intent(getApplicationContext(), SessionActivity.class);
+                intent[0].putExtra("userName", userName);
+                intent[0].putExtra("role", role);
+                startActivity(intent[0]);
             }
         });
+
+
 
 
         editCapAndDes.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +68,7 @@ public class CourseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String courseDescription1 = courseDescription.getText().toString();
                 String courseCapacity1 = courseCapacity.getText().toString();
+
                 if (!(courseCapacity1.matches("[0-9]+") && (Integer.parseInt(courseCapacity1) > 0))) {
                     Toast.makeText(CourseActivity.this, " Capacity must be Integer positive ", Toast.LENGTH_SHORT).show();
                 } else if (courseCapacity1.isEmpty() || courseDescription1.isEmpty()) {
@@ -79,8 +76,9 @@ public class CourseActivity extends AppCompatActivity {
 
                 } else {
 
-                    boolean FCap = cdb.editCrsCapacity(InstructorActivity.course.getCode(), Integer.parseInt(courseCapacity1));
-                    boolean FDes = cdb.editCrsDescription(InstructorActivity.course.getCode(), courseDescription1);
+                    boolean FCap = cdb.editCrsCapacity(course.getCode(), Integer.parseInt(courseCapacity1));
+                    boolean FDes = cdb.editCrsDescription(course.getCode(), courseDescription1);
+
                     if (FDes && FCap) {
                         Toast.makeText(CourseActivity.this, " added successful", Toast.LENGTH_SHORT).show();
                     } else {
@@ -107,41 +105,84 @@ public class CourseActivity extends AppCompatActivity {
 
                 if (day.isEmpty() || sH.isEmpty() || sM.isEmpty() || eH.isEmpty() || eM.isEmpty()) {
                     Toast.makeText(CourseActivity.this, "fill all fields ", Toast.LENGTH_SHORT).show();
-
-                } else if (!day.equals("Monday") && !day.equals("Tuesday") && !day.equals("Wednesday") && !day.equals("Thursday") && !day.equals("Friday")) {
-                    Toast.makeText(CourseActivity.this, "enter a valid day", Toast.LENGTH_SHORT).show();
-
+                } else if (stringToDays(day) == null) {
+                    Toast.makeText(CourseActivity.this, "Please enter a valid day", Toast.LENGTH_SHORT).show();
                 } else {
-                    Session session = new Session(Integer.parseInt(sH), Integer.parseInt(sM), Integer.parseInt(eH), Integer.parseInt(eM), stringToDays(day));
-                    boolean addSession = cdb.AddSession(InstructorActivity.course.getCode(), new Session[]{session});
-
-                    if (addSession) {
-                        Toast.makeText(CourseActivity.this, "Session add successful", Toast.LENGTH_SHORT).show();
+                    int i = Integer.parseInt(sH) - Integer.parseInt(eH);
+                    if (i > 0){
+                        Toast.makeText(CourseActivity.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
+                    } else if (i == 0 && Integer.parseInt(sM) - Integer.parseInt(eM) > 0){
+                        Toast.makeText(CourseActivity.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(CourseActivity.this, "Session add unsuccessful", Toast.LENGTH_SHORT).show();
+                        Session session = new Session(Integer.parseInt(sH), Integer.parseInt(sM), Integer.parseInt(eH), Integer.parseInt(eM), stringToDays(day));
+
+
+                        for(Session tempSession:sessionsList){
+                            if(tempSession.isOverlap(session)){
+                                Toast.makeText(CourseActivity.this, "Session is overlapping", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                        }
+
+                        course.getSessionList().add(session);
+                        Collections.sort(course.getSessionList());
+                        boolean addSession = cdb.overwriteSession(course.getCode(), course.getSessionList().toString());
+
+                        if (addSession) {
+                            Toast.makeText(CourseActivity.this, "Session Add Successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(CourseActivity.this, "Session Add Unsuccessful", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
+
+
+            }
+        });
+
+        goBackInstructorActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent[0] = new Intent(getApplicationContext(), InstructorActivity.class);
+                intent[0].putExtra("userName", userName);
+                intent[0].putExtra("role", role);
+                startActivity(intent[0]);
+            }
+        });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent[0] = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent[0]);
             }
         });
 
 
     }
-    //EditTexts
 
-    private Days stringToDays(String str) {
+    public static Days stringToDays(String str) {
         switch (str) {
-            case "Monday":
+            case "SU":
+                return Days.Sunday;
+            case "MO":
                 return Days.Monday;
-            case "Tuesday":
+            case "TU":
                 return Days.Tuesday;
-            case "Wednesday":
+            case "WE":
                 return Days.Wednesday;
-            case "Thursday":
+            case "TH":
                 return Days.Thursday;
-            default:
+            case "FR":
                 return Days.Friday;
+            case "SA":
+                return Days.Saturday;
+            default:
+                return null;
         }
-
-
     }
+
+
+
 }

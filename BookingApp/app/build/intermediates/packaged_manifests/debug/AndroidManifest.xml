@@ -22,6 +22,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.BookingApp" >
         <activity
+            android:name="com.example.bookingapp.SessionActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.bookingapp.CourseActivity"
             android:exported="false" />
         <activity

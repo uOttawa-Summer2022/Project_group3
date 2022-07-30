@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton role_instructor,role_student;
     Button signup, signin;
     com.example.bookingapp.AccountDB db;
-
+    static Account user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
