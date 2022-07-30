@@ -11,7 +11,7 @@
         android:id="@+id/logOut2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="Click here to log out"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,76 +19,78 @@
 
     <Button
         android:id="@+id/unenrollBtn"
-        android:layout_width="120dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
 
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="16dp"
         android:text="@string/unenroll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_listView" />
 
     <Button
         android:id="@+id/enrolBtn"
-        android:layout_width="120dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
 
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:text="@string/enroll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_listView" />
 
     <Button
         android:id="@+id/viewAll2"
-        android:layout_width="125dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
 
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:text="@string/viewAll"
         app:layout_constraintStart_toEndOf="@+id/unenrollBtn"
         app:layout_constraintTop_toBottomOf="@+id/course_listView" />
 
     <ListView
         android:id="@+id/course_listView"
-        android:layout_width="match_parent"
-        android:layout_height="371dp"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:background="#CEDDE3"
 
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_day" />
 
     <Button
         android:id="@+id/searchByDBtn"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/searchByDay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@+id/course_day"
-        app:layout_constraintTop_toTopOf="@+id/course_day" />
+        app:layout_constraintTop_toBottomOf="@+id/searchByCBtn2" />
 
     <Button
         android:id="@+id/searchByCBtn2"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/searchByCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@+id/course_Code2"
-        app:layout_constraintTop_toTopOf="@+id/course_Code2" />
+        app:layout_constraintTop_toBottomOf="@+id/searchByNBtn2" />
 
     <Button
         android:id="@+id/searchByNBtn2"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/searchByName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/course_Name2"
         app:layout_constraintTop_toTopOf="@+id/course_Name2" />
 
