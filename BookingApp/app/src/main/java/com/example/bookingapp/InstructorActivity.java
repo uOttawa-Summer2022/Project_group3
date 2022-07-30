@@ -181,11 +181,10 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
                     Toast.makeText(InstructorActivity.this, "Search Course fail", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                intent[0] = new Intent(getApplicationContext(), WelcomeActivity.class);
-                intent[0].putExtra("Des", course.getDescription());
-                intent[0].putExtra("userName", userName);
-                intent[0].putExtra("role", "1"+role);
-                startActivity(intent[0]);
+                course = cdb.searchCourse(course.getCode(),false);
+                callDialog();
+
+
             }
         });
 
@@ -200,6 +199,8 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
                 }
                 sessionList = course.getSessionList();
                 intent[0] = new Intent(getApplicationContext(), SessionActivity.class);
+                intent[0].putExtra("userName", userName);
+                intent[0].putExtra("role", role);
                 startActivity(intent[0]);
             }
         });
@@ -231,7 +232,12 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
 
         Toast.makeText(this, courseList.get(position), Toast.LENGTH_SHORT).show();
         printCourse();
-        CourseTxt.setText(course.getSessionList().toString());
+        
 
+    }
+
+    public void callDialog(){
+        DialogA dialog = new DialogA();
+        dialog.show(getSupportFragmentManager(), "some dialog");
     }
 }

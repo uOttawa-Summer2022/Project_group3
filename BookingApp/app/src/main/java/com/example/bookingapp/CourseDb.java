@@ -68,16 +68,19 @@ public class CourseDb extends SQLiteOpenHelper {
             }
 
             course.setInstructor(cursor.getString(2));
-            course.setDescription(cursor.getString(5));
+            course.setDescription(cursor.getString(3));
             course.setCapacity(cursor.getInt(4));
             String sessionString = cursor.getString(5);
-            if(sessionString == null||sessionString.equals("null")){
-                course.setSessionList(null);
+            if(sessionString == null||sessionString.equals("[]")){
+
             }else {
                 String[] tempA = convertStringToArray(sessionString);
-                for (String tempS:tempA) {
-                    sessionList.add(new Session(tempS));
-                }
+
+                    for (String tempS:tempA) {
+                        sessionList.add(new Session(tempS));
+                    }
+
+
                 course.setSessionList(sessionList);
             }
 
@@ -147,13 +150,14 @@ public class CourseDb extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean editCrsDescription(String description,String code){
+    public boolean editCrsDescription(String code, String description){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_DESCRIPTION, description);
-        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
-        return true;
+        int i = db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        db.close();
+        return i >= 0;
     }
 
     public boolean editCrsCapacity(String code, int capacity){
@@ -161,41 +165,22 @@ public class CourseDb extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_CAPACITY, capacity);
-        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
-        return true;
+        int i = db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        db.close();
+        return i >= 0;
     }
 
     public Boolean overwriteSession(String code, String overwriteString){
-        boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_SESSION, overwriteString);
-        db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        int i = db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
         db.close();
-        return result;
+        return i >= 0;
     }
 
-    public boolean delSession(String code, Days days, String coverString){
-        boolean result = false;
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_CODE + " = \"" + code + "\"";
-        Cursor cursor = db.rawQuery(query, null);
-        String col = COLUMN_SESSION;
 
-        if(cursor.moveToFirst()){
-            result = true;
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(col, coverString);
-
-            db.update(TABLE_NAME, contentValues, COLUMN_CODE + "=?", new String[]{code});
-            cursor.close();
-
-        }
-        db.close();
-        return result;
-    }
 
     public boolean deleteCourse(String code){
         boolean result = false;

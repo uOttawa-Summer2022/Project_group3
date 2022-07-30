@@ -1,5 +1,7 @@
 package com.example.bookingapp;
 
+import java.util.Objects;
+
 public class Session implements Comparable  {
     private int startM,startH,endM,endH;
     private Days day;
@@ -97,13 +99,31 @@ public class Session implements Comparable  {
     }
 
     public boolean isOverlap(Session other){
+        if(this.getDay() != other.getDay()){
+            return false;
+        }
         int start1 = this.getStartH()*100+this.getStartM();
         int end1 = this.getEndH()*100+this.getEndM();
 
         int start2 = other.getStartH()*100+other.getStartM();
         int end2 = other.getEndH()*100+other.getEndM();
 
-        return start1-end2 < 0 && start2-end1 < 0;
+        return start1-end2 <= 0 && start2-end1 <= 0;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return startM == session.startM && startH == session.startH && endM == session.endM && endH == session.endH && day == session.day;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startM, startH, endM, endH, day);
+    }
+
+
 }
 

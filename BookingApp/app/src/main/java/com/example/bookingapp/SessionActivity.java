@@ -18,7 +18,7 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
 
     ListView sessionListView;
     ArrayList<Session> sessionList;
-    Button GotoSearchBtn, addSessionBtn, delSessionBtn;
+    Button GotoSearchBtn, addSessionBtn, delSessionBtn, refreshBtn;
     TextView sessionTxt, sessionInfoTxt;
     ArrayAdapter<Session> sessionAdapter;
     CourseDb cdb;
@@ -35,7 +35,7 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
         GotoSearchBtn = (Button) findViewById(R.id.GotoSearchBtn);
         addSessionBtn = (Button) findViewById(R.id.addSessionBtn);
         delSessionBtn = (Button) findViewById(R.id.delSessionBtn);
-
+        refreshBtn = (Button) findViewById(R.id.refreshBtn);
         sessionTxt = (TextView) findViewById(R.id.sessionTxt);
         sessionInfoTxt = (TextView) findViewById(R.id.sessionInfoTxt);
 
@@ -77,20 +77,38 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
         delSessionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(course.getInstructor() != null && course.getInstructor().equals(userName)){
                     if(sessionString != null){
-
-
-
-
+                        sessionList.remove(position);
+                        sessionString = null;
+                        cdb.overwriteSession(course.getCode(),sessionList.toString());
+                        loadSessionListView();
+                        Toast.makeText(SessionActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(SessionActivity.this, "No Selected Session", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(SessionActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();
 
                 }else{
                     Toast.makeText(SessionActivity.this, "Not-Permitted", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadSessionListView();
+            }
+        });
+
+        GotoSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent[0] = new Intent(getApplicationContext(), InstructorActivity.class);
+                intent[0].putExtra("userName", userName);
+                intent[0].putExtra("role", role);
+                startActivity(intent[0]);
             }
         });
     }
@@ -108,12 +126,15 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
 
     private boolean printSession(){
         if(sessionList == null){
-            Toast.makeText(this, "No Session In This Course", Toast.LENGTH_SHORT).show();
+            sessionInfoTxt.setText("Empty Session");
             return false;
+        }else {
+            sessionInfoTxt.setText(sessionString);
+            return true;
         }
 
-        sessionInfoTxt.setText(sessionString);
-        return true;
+
+
     }
 
 

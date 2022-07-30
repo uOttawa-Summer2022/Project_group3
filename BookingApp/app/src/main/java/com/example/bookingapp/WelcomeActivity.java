@@ -25,12 +25,9 @@ public class WelcomeActivity extends AppCompatActivity {
         String role = intent[0].getStringExtra("role");
         String message;
 
-        if(role.charAt(0) == '1'){
 
-            message = intent[0].getStringExtra("Des");
-        }else {
-            message = "Welcome " + fName + "/" + userName + "!\nYou are logged in as " + role;
-        }
+        message = "Welcome " + fName + "/" + userName + "!\nYou are logged in as " + role;
+
 
 
         welcomeMsg = (TextView) findViewById(R.id.welcomeMsg);

@@ -51,6 +51,7 @@ id logOut
 id password
 id password1
 id plzClick
+id refreshBtn
 id role
 id role_instructor
 id role_student
@@ -63,6 +64,7 @@ id sessionTxt
 id startTimeHour
 id startTimeMinute
 id textView
+id textView2
 id textView3
 id textView5
 id textView6

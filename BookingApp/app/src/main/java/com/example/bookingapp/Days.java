@@ -11,14 +11,16 @@ public enum Days {
                 return Days.Monday;
             case "Tuesday":
                 return Days.Tuesday;
-            case "WE":
+            case "Wednesday":
                 return Days.Wednesday;
             case "Thursday":
                 return Days.Thursday;
             case "Friday":
                 return Days.Friday;
-            default:
+            case "Saturday":
                 return Days.Saturday;
+            default:
+                return null;
         }
     }
 
