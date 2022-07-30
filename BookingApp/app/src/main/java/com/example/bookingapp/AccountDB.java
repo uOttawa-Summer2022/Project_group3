@@ -16,7 +16,8 @@ public class AccountDB extends SQLiteOpenHelper {
     private static final String COLUMN_uNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_ROLE = "role";
-    private static final String COLUMN_COURSE = "course_code";
+    private static final String COLUMN_COURSE = "course";
+
 
     public AccountDB(Context context){
         super(context, DATABASE_NAME,null,1);
@@ -24,17 +25,17 @@ public class AccountDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqlDB) {
-        sqlDB.execSQL("create Table users("+
-                COLUMN_fNAME+"TEXT, "+
-                COLUMN_lNAME+ "TEXT, "+
-                COLUMN_uNAME+ "TEXT primary key, " +
-                COLUMN_PASSWORD+"TEXT, "+
-                COLUMN_ROLE+ "TEXT, "+
-                COLUMN_COURSE+"TEXT"+")");
+        sqlDB.execSQL("create Table users(" +
+                        COLUMN_fNAME+ "TEXT, " +
+                        COLUMN_lNAME+ "TEXT, " +
+                        COLUMN_uNAME+" TEXT primary key, " +
+                        COLUMN_PASSWORD+" TEXT, " +
+                        COLUMN_ROLE+ " TEXT, "+
+                        COLUMN_COURSE+ " TEXT)");
 
         //below adds the single admin account to the DB
-        String adminAccount = "INSERT INTO users (firstname, lastname, username, password, role) VALUES('John', 'Doe', 'admin', 'admin123', 'admin')";
-        sqlDB.execSQL(adminAccount);
+
+        addAccount("John","Doe","admin","admin123","admin");
     }
 
     @Override

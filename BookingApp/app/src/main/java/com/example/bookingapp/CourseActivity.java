@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class CourseActivity extends AppCompatActivity {
     EditText sir;
@@ -114,7 +115,10 @@ public class CourseActivity extends AppCompatActivity {
                     } else if (i == 0 && Integer.parseInt(sM) - Integer.parseInt(eM) > 0){
                         Toast.makeText(CourseActivity.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
                     } else {
-                        Session session = new Session(Integer.parseInt(sH), Integer.parseInt(sM), Integer.parseInt(eH), Integer.parseInt(eM), stringToDays(day));
+                        Days tempDays = stringToDays(day);
+                        int tempInt = tempDays.ordinal();
+                        int[] tempA = course.getSessionIndex();
+                        Session session = new Session(Integer.parseInt(sH), Integer.parseInt(sM), Integer.parseInt(eH), Integer.parseInt(eM), tempDays);
 
 
                         for(Session tempSession:sessionsList){
@@ -126,8 +130,14 @@ public class CourseActivity extends AppCompatActivity {
                         }
 
                         course.getSessionList().add(session);
+                        Toast.makeText(CourseActivity.this, course.getSessionList().toString(), Toast.LENGTH_SHORT).show();
                         Collections.sort(course.getSessionList());
-                        boolean addSession = cdb.overwriteSession(course.getCode(), course.getSessionList().toString());
+                        int a,b;
+                        a = tempA[tempInt];
+                        b = tempA[tempInt+1];
+
+                        List<Session> tempList = course.getSessionList().subList(a,a==b?a+1:b);
+                        boolean addSession = cdb.overwriteSession(course.getCode(), stringToDays(day), tempList.toString());
 
                         if (addSession) {
                             Toast.makeText(CourseActivity.this, "Session Add Successful", Toast.LENGTH_SHORT).show();

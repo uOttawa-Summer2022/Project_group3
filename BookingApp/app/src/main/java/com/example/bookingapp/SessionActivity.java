@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SessionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -80,9 +81,13 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
 
                 if(course.getInstructor() != null && course.getInstructor().equals(userName)){
                     if(sessionString != null){
+                        Days tempDays = sessionList.get(position).getDay();
+                        int tempInt = tempDays.ordinal();
+                        int[] tempA = course.getSessionIndex();
                         sessionList.remove(position);
                         sessionString = null;
-                        cdb.overwriteSession(course.getCode(),sessionList.toString());
+                        List<Session> tempList = sessionList.subList(tempA[tempInt],tempA[tempInt+1]);
+                        cdb.overwriteSession(course.getCode(),tempDays, tempList.toString());
                         loadSessionListView();
                         Toast.makeText(SessionActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();
                     }else {

@@ -41,7 +41,31 @@ public enum Days {
             default:
                 return Days.Saturday;
         }
+
     }
+
+    public static String daysToCol(Days days){
+        switch (days){
+            case Sunday:
+                return "session_SU";
+            case Monday:
+                return "session_MO";
+            case Tuesday:
+                return "session_TU";
+            case Wednesday:
+                return "session_WE";
+            case Thursday:
+                return "session_TH";
+            case Friday:
+                return "session_FR";
+            case Saturday:
+                return "session_SA";
+            default:
+                return null;
+        }
+    }
+
+
 
 
 

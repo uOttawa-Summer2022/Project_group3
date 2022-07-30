@@ -1,13 +1,11 @@
 package com.example.bookingapp;
 
-import android.database.Cursor;
-
 import java.util.ArrayList;
 
 public class Course {
     private String code;
     private String name;
-    private int[] SessionDayIndex;
+    private int[] sessionIndex;
     private ArrayList<Session> sessionList;
     private ArrayList<String> studentNameList;
     private int capacity;
@@ -22,12 +20,12 @@ public class Course {
         this.studentNameList = studentNameList;
     }
 
-    public int[] getSessionDayIndex() {
-        return SessionDayIndex;
+    public int[] getSessionIndex() {
+        return sessionIndex;
     }
 
-    public void setSessionDayIndex(int[] sessionDayIndex) {
-        SessionDayIndex = sessionDayIndex;
+    public void setSessionIndex(int[] sessionIndex) {
+        this.sessionIndex = sessionIndex;
     }
 
     public void setSessionList(ArrayList<Session> sessionList) {
@@ -55,6 +53,7 @@ public class Course {
         this.sessionList = new ArrayList<>();
         this.studentNameList = new ArrayList<>();
         this.instructor = "";
+        this.sessionIndex = new int[8];
     }
 
     public ArrayList<Session> getSessionList() {

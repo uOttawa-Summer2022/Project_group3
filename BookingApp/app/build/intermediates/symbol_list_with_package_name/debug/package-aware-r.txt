@@ -2677,7 +2677,10 @@ id courseCapacity
 id courseDescription
 id courseSessionDay
 id course_Code
+id course_Code2
 id course_Name
+id course_Name2
+id course_day
 id course_listView
 id currentState
 id custom
@@ -2729,6 +2732,7 @@ id end
 id endTimeHour
 id endTimeMinute
 id endToStart
+id enrolBtn
 id enterAlways
 id enterAlwaysCollapsed
 id exitUntilCollapsed
@@ -2800,6 +2804,7 @@ id linear
 id listMode
 id list_item
 id logOut
+id logOut2
 id masked
 id match_constraint
 id match_parent
@@ -2926,7 +2931,10 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchByCBtn
+id searchByCBtn2
+id searchByDBtn
 id searchByNBtn
+id searchByNBtn2
 id search_badge
 id search_bar
 id search_button
@@ -3040,6 +3048,7 @@ id transition_transform
 id triangle
 id unAssignBtn
 id unchecked
+id unenrollBtn
 id uniform
 id unlabeled
 id up
@@ -3048,6 +3057,7 @@ id username
 id username1
 id vertical_only
 id viewAll
+id viewAll2
 id viewSessionBtn
 id view_offset_helper
 id view_transition
@@ -3266,6 +3276,7 @@ string AccountManage
 string AccountName
 string CourseAssi
 string CourseCode
+string CourseDay
 string CourseManage
 string CourseManagement
 string CourseName
@@ -3341,6 +3352,7 @@ string description
 string editCourse
 string editDesAndCapa
 string endDate
+string enroll
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
@@ -3431,10 +3443,12 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string searchByCode
+string searchByDay
 string searchByName
 string search_menu_title
 string status_bar_notification_info_overflow
 string unassign
+string unenroll
 string username
 string viewAll
 string viewSession

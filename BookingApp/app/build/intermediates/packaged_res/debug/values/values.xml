@@ -11,6 +11,7 @@
     <string name="AccountName">Account user Name</string>
     <string name="CourseAssi">Course Assignment</string>
     <string name="CourseCode">Course Code</string>
+    <string name="CourseDay">Day</string>
     <string name="CourseManage">Course Manage:</string>
     <string name="CourseManagement">Modify Course Info</string>
     <string name="CourseName">Course Name</string>
@@ -50,14 +51,17 @@
     <string name="editCourse">Edit Course</string>
     <string name="editDesAndCapa">Save</string>
     <string name="endDate">End Date:</string>
+    <string name="enroll">ENROLL</string>
     <string name="goToSearch">Go to Search</string>
     <string name="instructor">instructor</string>
     <string name="modify">Confirm</string>
     <string name="modifyCrs">Modify Course</string>
     <string name="password">Password</string>
     <string name="searchByCode">Search By Code</string>
+    <string name="searchByDay">SEARCH BY DAY</string>
     <string name="searchByName">Search BY Name</string>
     <string name="unassign">Un-Assign</string>
+    <string name="unenroll">UNENROLL</string>
     <string name="username">Username</string>
     <string name="viewAll">View All</string>
     <string name="viewSession">View Session</string>
