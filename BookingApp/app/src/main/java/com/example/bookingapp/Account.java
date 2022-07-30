@@ -1,9 +1,12 @@
 package com.example.bookingapp;
 
+import java.util.ArrayList;
+
 public class Account {
     private String user_name;
     private String password;
     private AccountType type;
+    private ArrayList<Course> coursesList;
 //constructor
     public Account() {
 
@@ -13,6 +16,7 @@ public class Account {
         this.user_name = user_name;
         this.password = password;
         this.type = type;
+        coursesList = type == AccountType.STUDENT?new ArrayList<>():null;
     }
 
     public String getUser_name() {
@@ -37,6 +41,14 @@ public class Account {
 
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public ArrayList<Course> getCoursesList() {
+        return coursesList;
+    }
+
+    public void setCoursesList(ArrayList<Course> coursesList) {
+        this.coursesList = coursesList;
     }
 
     @Override

@@ -187,7 +187,7 @@ public class CourseDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String col = Days.daysToCol(days);
         ContentValues contentValues = new ContentValues();
-       contentValues.put(col, overwriteString);
+        contentValues.put(col, overwriteString);
         int i = db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
         db.close();
         return i >= 0;

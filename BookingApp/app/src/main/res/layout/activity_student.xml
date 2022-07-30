@@ -19,78 +19,78 @@
 
     <Button
         android:id="@+id/unenrollBtn"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
 
 
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="16dp"
         android:text="@string/unenroll"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_listView" />
+        app:layout_constraintStart_toStartOf="@+id/enrolBtn"
+        app:layout_constraintTop_toBottomOf="@+id/enrolBtn" />
 
     <Button
         android:id="@+id/enrolBtn"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
 
 
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
         android:text="@string/enroll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_listView" />
 
     <Button
         android:id="@+id/viewAll2"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
 
 
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
         android:text="@string/viewAll"
-        app:layout_constraintStart_toEndOf="@+id/unenrollBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_listView" />
+
+    <TextView
+        android:id="@+id/searchOrMy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Result"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseSelectTxt" />
 
     <ListView
         android:id="@+id/course_listView"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
-        android:background="#CEDDE3"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:background="#CEDDE3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_day" />
+        app:layout_constraintTop_toBottomOf="@+id/searchOrMy" />
 
     <Button
         android:id="@+id/searchByDBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/searchByDay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toEndOf="@+id/course_day"
-        app:layout_constraintTop_toBottomOf="@+id/searchByCBtn2" />
-
-    <Button
-        android:id="@+id/searchByCBtn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/searchByCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toEndOf="@+id/course_Code2"
-        app:layout_constraintTop_toBottomOf="@+id/searchByNBtn2" />
+        app:layout_constraintTop_toTopOf="@+id/course_day" />
 
     <Button
         android:id="@+id/searchByNBtn2"
-        android:layout_width="wrap_content"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:text="@string/searchByName"
+        android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintStart_toEndOf="@+id/course_Name2"
         app:layout_constraintTop_toTopOf="@+id/course_Name2" />
 
@@ -104,19 +104,6 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_Code2" />
-
-    <EditText
-        android:id="@+id/course_Code2"
-        android:layout_width="240dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="@string/CourseCode"
-        android:inputType="textPersonName"
-
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_Name2" />
 
     <EditText
@@ -125,7 +112,7 @@
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="@string/CourseName"
+        android:hint="Course Name or Code"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +127,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/myCousrseBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="My Course"
+        app:layout_constraintStart_toStartOf="@+id/viewAll2"
+        app:layout_constraintTop_toBottomOf="@+id/viewAll2" />
+
+    <TextView
+        android:id="@+id/courseSelectTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="courseSelectTxt"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_day" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

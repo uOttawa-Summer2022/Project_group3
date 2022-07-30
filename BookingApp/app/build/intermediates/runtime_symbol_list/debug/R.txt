@@ -2674,9 +2674,10 @@ int id cos 0x7f08009e
 int id counterclockwise 0x7f08009f
 int id courseCapacity 0x7f0800a0
 int id courseDescription 0x7f0800a1
+int id courseSelectTxt 0x7f080237
 int id courseSessionDay 0x7f0800a2
+int id courseTitleTxt 0x7f080238
 int id course_Code 0x7f0800a3
-int id course_Code2 0x7f0800a4
 int id course_Name 0x7f0800a5
 int id course_Name2 0x7f0800a6
 int id course_day 0x7f0800a7
@@ -2694,6 +2695,7 @@ int id delSessionBtn 0x7f0800b2
 int id deltaRelative 0x7f0800b3
 int id dependency_ordering 0x7f0800b4
 int id description 0x7f0800b5
+int id descriptionTxt 0x7f080239
 int id design_bottom_sheet 0x7f0800b6
 int id design_menu_item_action_area 0x7f0800b7
 int id design_menu_item_action_area_stub 0x7f0800b8
@@ -2861,6 +2863,7 @@ int id mtrl_picker_text_input_range_start 0x7f080159
 int id mtrl_picker_title_text 0x7f08015a
 int id mtrl_view_tag_bottom_padding 0x7f08015b
 int id multiply 0x7f08015c
+int id myCousrseBtn 0x7f080234
 int id navigation_bar_item_active_indicator_view 0x7f08015d
 int id navigation_bar_item_icon_container 0x7f08015e
 int id navigation_bar_item_icon_view 0x7f08015f
@@ -2930,10 +2933,10 @@ int id scrollIndicatorUp 0x7f08019e
 int id scrollView 0x7f08019f
 int id scrollable 0x7f0801a0
 int id searchByCBtn 0x7f0801a1
-int id searchByCBtn2 0x7f0801a2
 int id searchByDBtn 0x7f0801a3
 int id searchByNBtn 0x7f0801a4
 int id searchByNBtn2 0x7f0801a5
+int id searchOrMy 0x7f080235
 int id search_badge 0x7f0801a6
 int id search_bar 0x7f0801a7
 int id search_button 0x7f0801a8

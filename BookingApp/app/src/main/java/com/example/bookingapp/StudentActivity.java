@@ -14,16 +14,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
-    TextView welcomeMsg, studentTxt, capacityTxt;
+    TextView welcomeMsg, searchOrMy, courseSelectTxt;
     ArrayAdapter<String> allCourseAdapter;
     ListView courseListView;
-    Button searchByNBtn2, searchByCBtn2, logOut2, unAssignBtn, assignBtn, editCourseBtn, viewAll2, descript, viewSession;
-    ArrayList<String> courseList, searchCourseList;
-    EditText course_Code2, course_Name2;
+    Button searchByNBtn2, logOut2, unenrollBtn, enrolBtn, editCourseBtn, viewAll2, myCousrseBtn ;
+    List<String> courseStrList, myCourseStrList;
+    List<Course> courseList, myCourseList;
+    EditText  course_Name2;
     static Course course;
     CourseDb cdb;
+    AccountDB adb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,58 +34,75 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         setContentView(R.layout.activity_student);
 
         welcomeMsg = (TextView) findViewById(R.id.welcomeMsg1);
+        courseSelectTxt = (TextView) findViewById(R.id.courseSelectTxt);
+        searchOrMy = (TextView) findViewById(R.id.searchOrMy);
 
-        courseListView = (ListView) findViewById(R.id.course_listView);
-        viewAll2 = (Button) findViewById(R.id.viewAll2) ;
 
-        course_Code2 = (EditText) findViewById(R.id.course_Code2);
         course_Name2 = (EditText) findViewById(R.id.course_Name2);
 
+        courseListView = (ListView) findViewById(R.id.course_listView);
+
+        viewAll2 = (Button) findViewById(R.id.viewAll2) ;
         searchByNBtn2 = (Button) findViewById(R.id.searchByNBtn2);
-        searchByCBtn2 = (Button) findViewById(R.id.searchByCBtn2);
+
         logOut2 = (Button) findViewById(R.id.logOut2);
 
         cdb = new CourseDb(this);
-        courseList = cdb.findAllCourses();
+
+        adb = new AccountDB(this);
+
 
         final Intent[] intent1 = {getIntent()};
-        String userName = intent1[0].getStringExtra("userName");
-        String Role = intent1[0].getStringExtra("role");
 
         //welcome msg
         String fName = intent1[0].getStringExtra("firstName");
         String uName = intent1[0].getStringExtra("userName");
         String role = intent1[0].getStringExtra("role");
 
+        courseStrList = cdb.findAllCourses();
+        courseList = new ArrayList<>();
+        myCourseStrList = adb.searchS_CourseList(uName);
+        myCourseList = new ArrayList<>();
+
         String message = "Welcome " + fName + "/" + uName + "! You are logged in as " + role;
 
         welcomeMsg = (TextView) findViewById(R.id.welcomeMsg1);
-        welcomeMsg.setText(role+": "+userName);
+        welcomeMsg.setText(role+": "+uName);
 
-        //search by course code
-        searchByCBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(course_Name2.getText().toString().trim().equals("")){
-                    Toast.makeText(StudentActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                course = cdb.searchCourse(course_Code2.getText().toString(),false);
-                printCourse();
-
+        for(String courseStr:courseStrList){
+            String cCode = courseStr.split(":")[1];
+            Course tempCourse =cdb.searchCourse(cCode,false);
+            if((tempCourse != null)){
+                courseList.add(tempCourse);
             }
-        });
+        }
+
+        for(String courseStr:myCourseStrList){
+            String cCode = courseStr.split(":")[1];
+            Course tempCourse =cdb.searchCourse(cCode,false);
+            if((tempCourse != null)){
+                myCourseList.add(tempCourse);
+            }
+        }
+
+
 
         //search by course name
         searchByNBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(course_Name2.getText().toString().trim().equals("")){
+                String cName = course_Name2.getText().toString().trim();
+                if(cName.equals("")){
                     Toast.makeText(StudentActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                course = cdb.searchCourse(course_Name2.getText().toString(),true);
-                printCourse();
+                ArrayList<String> tempList = new ArrayList<>();
+                for(String temp:courseStrList){
+                    if(temp.contains(cName)){
+                        tempList.add(temp);
+                    }
+                }
+                viewCourses(tempList);
 
             }
         });
@@ -103,11 +123,13 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View v) {
 
 
-                viewCourses(courseList);
+                viewCourses(courseStrList);
 
 
             }
         });
+
+
 
 
     }
@@ -117,13 +139,14 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
             Toast.makeText(StudentActivity.this, "Search Course fail", Toast.LENGTH_SHORT).show();
             return false;
         }
-        studentTxt.setText("Student: " + course.getInstructor());
-        capacityTxt.setText("Capacity: "+ course.getCapacity());
+        courseSelectTxt.setText("Course Code: "+course.getCode());
+
+
 
         return true;
     }
 
-    private void viewCourses(ArrayList<String> list) {
+    private void viewCourses(List<String> list) {
         allCourseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         courseListView.setAdapter(allCourseAdapter);
 
@@ -131,9 +154,7 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         courseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent detail = new Intent(getApplicationContext(), CourseDetailActivity.class);
-                //detail.putExtra("name/code", allCourseAdapter.getItem(position));
-                //startActivity(detail);
+                Toast.makeText(StudentActivity.this, "qwerty", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -143,11 +164,11 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String code =courseList.get(position).split(":")[1];
+        String code = courseStrList.get(position).split(":")[1];
         course = cdb.searchCourse(code, false);
-
-        Toast.makeText(this, courseList.get(position), Toast.LENGTH_SHORT).show();
         printCourse();
+        Toast.makeText(this, courseStrList.get(position), Toast.LENGTH_SHORT).show();
+
 
     }
 }

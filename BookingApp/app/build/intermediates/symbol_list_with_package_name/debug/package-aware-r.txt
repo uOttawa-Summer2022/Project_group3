@@ -2675,9 +2675,10 @@ id cos
 id counterclockwise
 id courseCapacity
 id courseDescription
+id courseSelectTxt
 id courseSessionDay
+id courseTitleTxt
 id course_Code
-id course_Code2
 id course_Name
 id course_Name2
 id course_day
@@ -2695,6 +2696,7 @@ id delSessionBtn
 id deltaRelative
 id dependency_ordering
 id description
+id descriptionTxt
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -2862,6 +2864,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id myCousrseBtn
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -2931,10 +2934,10 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchByCBtn
-id searchByCBtn2
 id searchByDBtn
 id searchByNBtn
 id searchByNBtn2
+id searchOrMy
 id search_badge
 id search_bar
 id search_button

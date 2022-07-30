@@ -1,10 +1,17 @@
 package com.example.bookingapp;
 
+import static com.example.bookingapp.CourseDb.convertStringToArray;
+
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AccountDB extends SQLiteOpenHelper {
 
@@ -17,6 +24,7 @@ public class AccountDB extends SQLiteOpenHelper {
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_ROLE = "role";
     private static final String COLUMN_COURSE = "course";
+
 
 
     public AccountDB(Context context){
@@ -149,5 +157,45 @@ public class AccountDB extends SQLiteOpenHelper {
         db.close();
         return result;
     }
+
+    @SuppressLint("Range")
+    public List<String> searchS_CourseList(String uName){
+
+
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            //the query make sure that it is search for a student
+            String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_uNAME + " = \"" + uName + "\""+ " AND " +
+                            COLUMN_ROLE + " = \"" + "Student" + "\"";
+            Cursor cursor = db.rawQuery(query, null);
+
+            ArrayList<Course> sessionList = new ArrayList<>();;
+            String[] tempA = null;
+            List<String> result = new ArrayList<>();
+            if(cursor.moveToFirst()){
+
+                tempA = convertStringToArray(cursor.getString(cursor.getColumnIndex(COLUMN_COURSE)));
+                result = Arrays.asList(tempA);
+
+
+            }
+            cursor.close();
+            db.close();
+
+            return result;
+
+    }
+
+
+    public boolean overwriteCourse(String uName, String overwriteString){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_COURSE, overwriteString);
+        int i = db.update(TABLE_NAME, contentValues, COLUMN_uNAME+"=?", new String[]{uName});
+        db.close();
+        return i >= 0;
+
+    }
+
 }
 
