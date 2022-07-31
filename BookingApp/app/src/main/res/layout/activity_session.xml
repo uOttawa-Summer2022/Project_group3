@@ -83,13 +83,13 @@
 
     <Button
         android:id="@+id/refreshBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sessionListView"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="21dp"
-        android:text="Refresh" />
+        android:text="Session" />
 
     <TextView
         android:id="@+id/courseTitleTxt"
@@ -100,5 +100,15 @@
         android:layout_marginTop="7dp"
         android:layout_marginEnd="162dp"
         android:text="courseTitleTxt" />
+
+    <Button
+        android:id="@+id/studentBtn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/refreshBtn"
+        android:layout_alignEnd="@+id/refreshBtn"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="0dp"
+        android:text="Student" />
 
 </RelativeLayout>

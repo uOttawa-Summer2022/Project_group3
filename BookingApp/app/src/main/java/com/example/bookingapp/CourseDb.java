@@ -66,7 +66,7 @@ public class CourseDb extends SQLiteOpenHelper {
         if(byN){
             col = COLUMN_NAME;
         }
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " = \"" + code + "\"";
         Cursor cursor = db.rawQuery(query, null);
         Course course = null;
@@ -97,9 +97,12 @@ public class CourseDb extends SQLiteOpenHelper {
                 }
                 sessionIndex[i-4] = count;
             }
+            String[] tempArray = convertStringToArray(cursor.getString(12));
             course.setSessionList(sessionList);
             course.setSessionIndex(sessionIndex);
+            course.setStudentNameList(new ArrayList<String>(Arrays.asList(tempArray)));
         }
+
         cursor.close();
         db.close();
 
@@ -196,6 +199,20 @@ public class CourseDb extends SQLiteOpenHelper {
         return i >= 0;
     }
 
+    public boolean overwriteStudent(String code, String overwriteString){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String col = COLUMN_STUDENT;
+        ContentValues contentValues = new ContentValues();
+        if(overwriteString.equals("[]")||overwriteString.equals("")){
+            overwriteString = null;
+        }
+        contentValues.put(col, overwriteString);
+        int i = db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
+        db.close();
+        return i >= 0;
+    }
+
+
 
 
     public boolean deleteCourse(String code){
@@ -245,6 +262,9 @@ public class CourseDb extends SQLiteOpenHelper {
     }
 
     public static String[] convertStringToArray(String str){
+        if(str == null){
+            return new String[]{};
+        }
         if(str.substring(0,1).equals("[")){
             str = str.substring(1,str.length());
         }
@@ -272,5 +292,7 @@ public class CourseDb extends SQLiteOpenHelper {
         db.close();
         return listOfCourses;
     }
+
+
 }
 
