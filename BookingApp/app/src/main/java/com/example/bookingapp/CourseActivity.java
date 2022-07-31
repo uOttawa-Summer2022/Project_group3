@@ -112,7 +112,7 @@ public class CourseActivity extends AppCompatActivity {
                     int i = Integer.parseInt(sH) - Integer.parseInt(eH);
                     if (i > 0){
                         Toast.makeText(CourseActivity.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
-                    } else if (i == 0 && Integer.parseInt(sM) - Integer.parseInt(eM) > 0){
+                    } else if (i == 0 && Integer.parseInt(sM) - Integer.parseInt(eM) < 0){
                         Toast.makeText(CourseActivity.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
                     } else {
                         Days tempDays = stringToDays(day);

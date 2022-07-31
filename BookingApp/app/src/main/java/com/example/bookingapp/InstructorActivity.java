@@ -77,7 +77,7 @@ public class InstructorActivity extends AppCompatActivity implements AdapterView
         searchByCBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(course_Name.getText().toString().trim().equals("")){
+                if(course_Code.getText().toString().trim().equals("")){
                     Toast.makeText(InstructorActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }

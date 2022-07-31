@@ -22,13 +22,16 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
     ArrayAdapter<String> allCourseAdapter;
     ListView courseListView;
     Button searchByNBtn2, logOut2, unenrollBtn, enrolBtn, searchByDBtn, viewAll2, myCousrseBtn ;
-    List<String> courseStrList, myCourseStrList, currentC_StrList;
-    List<Course> courseList, myCourseList, currentCList;
-    EditText  course_Name2, course_day;
+
+    ArrayList<String> courseStrList, myCourseStrList, currentC_StrList;
+    ArrayList<Course> courseList, myCourseList, currentCList;
+
+    EditText course_Name2, course_day;
     static Course course;
     CourseDb cdb;
     AccountDB adb;
     String fName, uName, role;
+    int pos1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         searchByDBtn = (Button) findViewById(R.id.searchByDBtn);
         viewAll2 = (Button) findViewById(R.id.viewAll2) ;
         myCousrseBtn = (Button) findViewById(R.id.myCousrseBtn);
+        enrolBtn = (Button) findViewById(R.id.enrolBtn);
+        unenrollBtn = (Button) findViewById(R.id.unenrollBtn);
+
 
         logOut2 = (Button) findViewById(R.id.logOut2);
 
@@ -62,14 +68,15 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         final Intent[] intent1 = {getIntent()};
 
         //welcome msg
-        fName = intent1[0].getStringExtra("firstName");
-        uName = intent1[0].getStringExtra("userName");
-        role = intent1[0].getStringExtra("role");
+        fName = intent1[0].getStringExtra("firstName").trim();
+        uName = intent1[0].getStringExtra("userName").trim();
+        role = intent1[0].getStringExtra("role").trim();
 
         courseStrList = cdb.findAllCourses();
         courseList = new ArrayList<>();
-        myCourseStrList = adb.searchS_CourseList(uName);
+        myCourseStrList = new ArrayList<String>(adb.searchS_CourseList(uName));
         myCourseList = new ArrayList<>();
+
 
 
 
@@ -169,16 +176,42 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
                 course = null;
                 courseSelectTxt.setText("Course Code: ");
                 searchOrMy.setText("My Course");
-                courseListView.setBackgroundColor(Color.rgb(235,239,74));
-                myCourseStrList = adb.searchS_CourseList(uName);
+                courseListView.setBackgroundColor(Color.rgb(234,238,74));
+                myCourseStrList = new ArrayList<String>(adb.searchS_CourseList(uName));
                 currentC_StrList = myCourseStrList;
                 currentCList = myCourseList;
                 viewCourses(currentC_StrList);
             }
         });
 
+        enrolBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(course == null){
+                    Toast.makeText(StudentActivity.this, "Please Select a Course!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                enrollCourse(myCourseList, course);
+                course.getStudentNameList().add(uName);
+                cdb.overwriteStudent(course.getCode(), course.getStudentNameList().toString());
+                course = null;
+            }
+        });
 
-
+        unenrollBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(course == null){
+                    Toast.makeText(StudentActivity.this, "Please Select a Course!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                unEnrollCourse(course);
+                viewCourses(myCourseStrList);
+                course.getStudentNameList().remove(uName);
+                cdb.overwriteStudent(course.getCode(), course.getStudentNameList().toString());
+                course = null;
+            }
+        });
 
 
     }
@@ -203,8 +236,9 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         courseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(StudentActivity.this, "qwerty", Toast.LENGTH_SHORT).show();
                 course = currentCList.get(position);
+
+                pos1 = position;
                 printCourse();
 
             }
@@ -223,7 +257,7 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
     }
 
 
-    public boolean enrollCourse(ArrayList<Course> myCourseList2, Course course2){
+    public boolean enrollCourse(List<Course> myCourseList2, Course course2){
 
         if(myCourseList2.contains(course2)){
             Toast.makeText(this, "Course Have Already Been Enrolled.", Toast.LENGTH_SHORT).show();
@@ -233,6 +267,7 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
             for(Session tempSession:tempCourse.getSessionList()){
                 for(Session tempSession2:course2.getSessionList()){
                     if(tempSession.isOverlap(tempSession2)){
+                        Toast.makeText(this, "Course is overlapping", Toast.LENGTH_SHORT).show();
                         return false;
                     }
                 }
@@ -240,24 +275,28 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         }
 
         myCourseList2.add(course2);
-        myCourseStrList.add(course2.getName()+":"+course2.getCode());
-        adb.overwriteCourse(uName,myCourseList2.toString());
+        String tempStr = course2.getName()+":"+course2.getCode();
+        myCourseStrList.add(tempStr);
+        adb.overwriteCourse(uName,myCourseStrList.toString());
 
-        viewCourses(myCourseStrList);
+        Toast.makeText(this, "Enroll Success", Toast.LENGTH_SHORT).show();
+
         return true;
     }
 
-    public boolean unEnrollCourse(int pos){
-        if(currentC_StrList != myCourseStrList){
+    public boolean unEnrollCourse(Course course){
+        if(!myCourseList.contains(course)){
             Toast.makeText(this, "You are not enrolled in this course", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        myCourseStrList.remove(pos);
+        myCourseStrList.remove(pos1);
         currentC_StrList = myCourseStrList;
-        myCourseList.remove(pos);
+        myCourseList.remove(pos1);
+        currentCList = myCourseList;
         adb.overwriteCourse(uName,myCourseStrList.toString());
 
+        Toast.makeText(this, "Un-Enroll Success", Toast.LENGTH_SHORT).show();
 
 
 
