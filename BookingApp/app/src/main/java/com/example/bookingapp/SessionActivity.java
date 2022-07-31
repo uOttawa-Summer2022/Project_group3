@@ -13,13 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SessionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView sessionListView;
     ArrayList<Session> sessionList;
     Button GotoSearchBtn, addSessionBtn, delSessionBtn, refreshBtn;
-    TextView sessionTxt, sessionInfoTxt;
+    TextView sessionTxt, sessionInfoTxt, courseTitleTxt, descriptionTxt;
     ArrayAdapter<Session> sessionAdapter;
     CourseDb cdb;
     Course course;
@@ -36,16 +37,18 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
         addSessionBtn = (Button) findViewById(R.id.addSessionBtn);
         delSessionBtn = (Button) findViewById(R.id.delSessionBtn);
         refreshBtn = (Button) findViewById(R.id.refreshBtn);
+
+
+        courseTitleTxt = (TextView) findViewById(R.id.courseTitleTxt);
         sessionTxt = (TextView) findViewById(R.id.sessionTxt);
         sessionInfoTxt = (TextView) findViewById(R.id.sessionInfoTxt);
+        descriptionTxt = (TextView) findViewById(R.id.descriptionTxt);
 
-        course = InstructorActivity.course;
 
-        cdb = new CourseDb(this);
 
-        sessionList = course.getSessionList();
 
-        loadSessionListView();
+
+
 
 
 
@@ -55,9 +58,22 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
         String userName = intent[0].getStringExtra("userName");
         String role = intent[0].getStringExtra("role");
 
+        if(role.equals("Student")){
+            course = StudentActivity.course;
+        }else {
+            course = InstructorActivity.course;
+        }
 
+        cdb = new CourseDb(this);
+
+        sessionList = course.getSessionList();
 
         sessionListView.setOnItemClickListener(this);
+
+
+        loadSessionListView();
+
+        courseTitleTxt.setText(course.getName()+":"+course.getCode());
 
         addSessionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,9 +96,13 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
 
                 if(course.getInstructor() != null && course.getInstructor().equals(userName)){
                     if(sessionString != null){
+                        Days tempDays = sessionList.get(position).getDay();
+                        int tempInt = tempDays.ordinal();
+                        int[] tempA = course.getSessionIndex();
                         sessionList.remove(position);
                         sessionString = null;
-                        cdb.overwriteSession(course.getCode(),sessionList.toString());
+                        List<Session> tempList = sessionList.subList(tempA[tempInt],tempA[tempInt+1]-1);
+                        cdb.overwriteSession(course.getCode(),tempDays, tempList.toString());
                         loadSessionListView();
                         Toast.makeText(SessionActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();
                     }else {

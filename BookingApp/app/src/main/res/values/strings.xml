@@ -53,5 +53,9 @@
     <string name="descript">Descript</string>
     <string name="delSession">Delete Session</string>
     <string name="goToSearch">Go to Search</string>
+    <string name="unenroll">UNENROLL</string>
+    <string name="enroll">ENROLL</string>
+    <string name="searchByDay">SEARCH BY DAY</string>
+    <string name="CourseDay">Day</string>
 
 </resources>

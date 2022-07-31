@@ -17,7 +17,13 @@ public class CourseDb extends SQLiteOpenHelper {
     private static final String COLUMN_INSTRUCTOR = "instructor";
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_CAPACITY = "Capacity";
-    private static final String COLUMN_SESSION = "session";
+    private static final String COLUMN_SESSION_SU = "session_SU";
+    private static final String COLUMN_SESSION_MO = "session_MO";
+    private static final String COLUMN_SESSION_TU = "session_TU";
+    private static final String COLUMN_SESSION_WE = "session_WE";
+    private static final String COLUMN_SESSION_TH = "session_TH";
+    private static final String COLUMN_SESSION_FR = "session_FR";
+    private static final String COLUMN_SESSION_SA = "session_SA";
     private static final String COLUMN_STUDENT = "student";
 
     private static final String DATABASE_NAME = "courses.db";
@@ -36,7 +42,13 @@ public class CourseDb extends SQLiteOpenHelper {
                 COLUMN_INSTRUCTOR + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_CAPACITY  + " INTEGER, " +
-                COLUMN_SESSION +  " TEXT, " +
+                COLUMN_SESSION_SU+  " TEXT, " +
+                COLUMN_SESSION_MO+  " TEXT, " +
+                COLUMN_SESSION_TU+  " TEXT, " +
+                COLUMN_SESSION_WE+  " TEXT, " +
+                COLUMN_SESSION_TH+  " TEXT, " +
+                COLUMN_SESSION_FR+  " TEXT, " +
+                COLUMN_SESSION_SA +  " TEXT, " +
                 COLUMN_STUDENT +  " TEXT" +")";
         sqLiteDatabase.execSQL(create_table_cmd);
     }
@@ -70,22 +82,23 @@ public class CourseDb extends SQLiteOpenHelper {
             course.setInstructor(cursor.getString(2));
             course.setDescription(cursor.getString(3));
             course.setCapacity(cursor.getInt(4));
-            String sessionString = cursor.getString(5);
-            if(sessionString == null||sessionString.equals("[]")){
-
-            }else {
-                String[] tempA = convertStringToArray(sessionString);
-
+            int[] sessionIndex = new int[8];
+            sessionIndex[0] = 0;
+            for(int i = 5;i<12;i++){
+                int count = 0;
+                String sessionString = cursor.getString(i);
+                if(sessionString == null||sessionString.equals("[]")){
+                }else {
+                    String[] tempA = convertStringToArray(sessionString);
                     for (String tempS:tempA) {
                         sessionList.add(new Session(tempS));
+                        count++;
                     }
-
-
-                course.setSessionList(sessionList);
+                }
+                sessionIndex[i-4] = count;
             }
-
-
-
+            course.setSessionList(sessionList);
+            course.setSessionIndex(sessionIndex);
         }
         cursor.close();
         db.close();
@@ -170,11 +183,14 @@ public class CourseDb extends SQLiteOpenHelper {
         return i >= 0;
     }
 
-    public Boolean overwriteSession(String code, String overwriteString){
+    public Boolean overwriteSession(String code, Days days, String overwriteString){
         SQLiteDatabase db = this.getWritableDatabase();
-
+        String col = Days.daysToCol(days);
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_SESSION, overwriteString);
+        if(overwriteString.equals("[]")||overwriteString.equals("")){
+            overwriteString = null;
+        }
+        contentValues.put(col, overwriteString);
         int i = db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
         db.close();
         return i >= 0;
@@ -215,6 +231,7 @@ public class CourseDb extends SQLiteOpenHelper {
         db.close();
         return listOfCourses;
     }
+
     public static String convertArrayToString(String[] array){
         String str = "";
         for (int i = 0;i<array.length; i++) {
@@ -226,6 +243,7 @@ public class CourseDb extends SQLiteOpenHelper {
         }
         return str;
     }
+
     public static String[] convertStringToArray(String str){
         if(str.substring(0,1).equals("[")){
             str = str.substring(1,str.length());
@@ -237,6 +255,22 @@ public class CourseDb extends SQLiteOpenHelper {
         return str.split(strSeparator);
     }
 
+    public ArrayList<String> searchCourseByDays(Days days){
+        ArrayList<String> listOfCourses = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String col = Days.daysToCol(days);
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " IS NOT NULL";
+        Cursor cursor = db.rawQuery(query, null);
 
+        if(cursor.moveToFirst()) {
+            do {
+                listOfCourses.add(cursor.getString(1)+":"+cursor.getString(0));
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return listOfCourses;
+    }
 }
 

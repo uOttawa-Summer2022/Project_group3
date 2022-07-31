@@ -36,8 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-                String firstname = db.getFirstNameWithUser(user);
-                String role = db.getRoleWithUser(user);
+
 
                 if (user.equals("") || pass.equals("")){
                     Toast.makeText(LoginActivity.this, "Please enter all the missing fields ...", Toast.LENGTH_SHORT).show();
@@ -46,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean validUserAndPass = db.checkUsernameAndPassword(user, pass);
                     if (validUserAndPass == true){
                         Toast.makeText(LoginActivity.this, "Successfully Signed In!", Toast.LENGTH_SHORT).show();
+                        String firstname = db.getFirstNameWithUser(user);
+                        String role = db.getRoleWithUser(user);
                         Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                         intent.putExtra("firstName", firstname);
                         intent.putExtra("userName", user);

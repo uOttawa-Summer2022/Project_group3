@@ -1,13 +1,13 @@
 package com.example.bookingapp;
 
-import android.database.Cursor;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Course {
     private String code;
     private String name;
-    private int[] SessionDayIndex;
+    private int[] sessionIndex;
     private ArrayList<Session> sessionList;
     private ArrayList<String> studentNameList;
     private int capacity;
@@ -22,12 +22,12 @@ public class Course {
         this.studentNameList = studentNameList;
     }
 
-    public int[] getSessionDayIndex() {
-        return SessionDayIndex;
+    public int[] getSessionIndex() {
+        return sessionIndex;
     }
 
-    public void setSessionDayIndex(int[] sessionDayIndex) {
-        SessionDayIndex = sessionDayIndex;
+    public void setSessionIndex(int[] sessionIndex) {
+        this.sessionIndex = sessionIndex;
     }
 
     public void setSessionList(ArrayList<Session> sessionList) {
@@ -55,6 +55,7 @@ public class Course {
         this.sessionList = new ArrayList<>();
         this.studentNameList = new ArrayList<>();
         this.instructor = "";
+        this.sessionIndex = new int[8];
     }
 
     public ArrayList<Session> getSessionList() {
@@ -102,5 +103,20 @@ public class Course {
                 ", description='" + description + '\'' +
                 ", instructor='" + instructor + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return capacity == course.capacity && Objects.equals(code, course.code) && Objects.equals(name, course.name) && Arrays.equals(sessionIndex, course.sessionIndex) && Objects.equals(sessionList, course.sessionList) && Objects.equals(studentNameList, course.studentNameList) && Objects.equals(description, course.description) && Objects.equals(instructor, course.instructor);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(code, name, sessionList, studentNameList, capacity, description, instructor);
+        result = 31 * result + Arrays.hashCode(sessionIndex);
+        return result;
     }
 }

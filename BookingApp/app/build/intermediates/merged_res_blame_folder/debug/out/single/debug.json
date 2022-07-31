@@ -16,8 +16,8 @@
         "source": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-main-27:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.bookingapp-merged_res-25:/layout_activity_session.xml.flat",
-        "source": "com.example.bookingapp-main-27:/layout/activity_session.xml"
+        "merged": "com.example.bookingapp-merged_res-25:/layout_activity_student.xml.flat",
+        "source": "com.example.bookingapp-main-27:/layout/activity_student.xml"
     },
     {
         "merged": "C:\\Users\\percy\\.gradle\\daemon\\7.3.3\\com.example.bookingapp-merged_res-25:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",

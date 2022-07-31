@@ -4,20 +4,20 @@ public enum Days {
     Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday;
 
     public static Days stringToDays(String str) {
-        switch (str) {
-            case "Sunday":
+        switch (str.toUpperCase()) {
+            case "SUNDAY":
                 return Days.Sunday;
-            case "Monday":
+            case "MONDAY":
                 return Days.Monday;
-            case "Tuesday":
+            case "TUESDAY":
                 return Days.Tuesday;
-            case "Wednesday":
+            case "WEDNESDAY":
                 return Days.Wednesday;
-            case "Thursday":
+            case "THURSDAY":
                 return Days.Thursday;
-            case "Friday":
+            case "FRIDAY":
                 return Days.Friday;
-            case "Saturday":
+            case "SATURDAY":
                 return Days.Saturday;
             default:
                 return null;
@@ -41,7 +41,31 @@ public enum Days {
             default:
                 return Days.Saturday;
         }
+
     }
+
+    public static String daysToCol(Days days){
+        switch (days){
+            case Sunday:
+                return "session_SU";
+            case Monday:
+                return "session_MO";
+            case Tuesday:
+                return "session_TU";
+            case Wednesday:
+                return "session_WE";
+            case Thursday:
+                return "session_TH";
+            case Friday:
+                return "session_FR";
+            case Saturday:
+                return "session_SA";
+            default:
+                return null;
+        }
+    }
+
+
 
 
 

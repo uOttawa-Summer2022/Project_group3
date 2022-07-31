@@ -1,17 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="100dp"
+
     tools:context=".StudentActivity">
+
+    <Button
+        android:id="@+id/logOut2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="Click here to log out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/unenrollBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+
+
+        android:text="@string/unenroll"
+        app:layout_constraintStart_toStartOf="@+id/enrolBtn"
+        app:layout_constraintTop_toBottomOf="@+id/enrolBtn" />
+
+    <Button
+        android:id="@+id/enrolBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/enroll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_listView" />
+
+    <Button
+        android:id="@+id/viewAll2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/viewAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_listView" />
+
+    <TextView
+        android:id="@+id/searchOrMy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Result"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseSelectTxt" />
+
+    <ListView
+        android:id="@+id/course_listView"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+
+        android:layout_marginTop="8dp"
+        android:background="#CEDDE3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchOrMy" />
+
+    <Button
+        android:id="@+id/searchByDBtn"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:text="@string/searchByDay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/course_day"
+        app:layout_constraintTop_toTopOf="@+id/course_day" />
+
+    <Button
+        android:id="@+id/searchByNBtn2"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toEndOf="@+id/course_Name2"
+        app:layout_constraintTop_toTopOf="@+id/course_Name2" />
+
+    <EditText
+        android:id="@+id/course_day"
+        android:layout_width="240dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="@string/CourseDay"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_Name2" />
+
+    <EditText
+        android:id="@+id/course_Name2"
+        android:layout_width="240dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Course Name or Code"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMsg1" />
 
     <TextView
         android:id="@+id/welcomeMsg1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PlaceHolder" />
+        android:layout_marginTop="4dp"
+        android:text="PlaceHolder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/myCousrseBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="My Course"
+        app:layout_constraintStart_toStartOf="@+id/viewAll2"
+        app:layout_constraintTop_toBottomOf="@+id/viewAll2" />
+
+    <TextView
+        android:id="@+id/courseSelectTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="Course Code: "
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_day" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
