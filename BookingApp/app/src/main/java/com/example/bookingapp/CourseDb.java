@@ -187,6 +187,9 @@ public class CourseDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String col = Days.daysToCol(days);
         ContentValues contentValues = new ContentValues();
+        if(overwriteString.equals("[]")||overwriteString.equals("")){
+            overwriteString = null;
+        }
         contentValues.put(col, overwriteString);
         int i = db.update(TABLE_NAME, contentValues, "code=?", new String[]{code});
         db.close();
@@ -228,6 +231,7 @@ public class CourseDb extends SQLiteOpenHelper {
         db.close();
         return listOfCourses;
     }
+
     public static String convertArrayToString(String[] array){
         String str = "";
         for (int i = 0;i<array.length; i++) {
@@ -239,6 +243,7 @@ public class CourseDb extends SQLiteOpenHelper {
         }
         return str;
     }
+
     public static String[] convertStringToArray(String str){
         if(str.substring(0,1).equals("[")){
             str = str.substring(1,str.length());
@@ -250,6 +255,22 @@ public class CourseDb extends SQLiteOpenHelper {
         return str.split(strSeparator);
     }
 
+    public ArrayList<String> searchCourseByDays(Days days){
+        ArrayList<String> listOfCourses = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String col = Days.daysToCol(days);
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + col + " IS NOT NULL";
+        Cursor cursor = db.rawQuery(query, null);
 
+        if(cursor.moveToFirst()) {
+            do {
+                listOfCourses.add(cursor.getString(1)+":"+cursor.getString(0));
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return listOfCourses;
+    }
 }
 

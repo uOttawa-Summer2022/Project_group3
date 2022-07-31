@@ -25,25 +25,17 @@ public class AccountDB extends SQLiteOpenHelper {
     private static final String COLUMN_ROLE = "role";
     private static final String COLUMN_COURSE = "course";
 
-
-
     public AccountDB(Context context){
-        super(context, DATABASE_NAME,null,1);
+        super(context, DATABASE_NAME,null,2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqlDB) {
-        sqlDB.execSQL("create Table users(" +
-                        COLUMN_fNAME+ "TEXT, " +
-                        COLUMN_lNAME+ "TEXT, " +
-                        COLUMN_uNAME+" TEXT primary key, " +
-                        COLUMN_PASSWORD+" TEXT, " +
-                        COLUMN_ROLE+ " TEXT, "+
-                        COLUMN_COURSE+ " TEXT)");
+        sqlDB.execSQL("create Table users(firstname TEXT, lastname TEXT, username TEXT primary key, password TEXT, role TEXT, course TEXT)");
 
         //below adds the single admin account to the DB
-
-        addAccount("John","Doe","admin","admin123","admin");
+        String adminAccount = "INSERT INTO users (firstname, lastname, username, password, role) VALUES('John', 'Doe', 'admin', 'admin123', 'admin')";
+        sqlDB.execSQL(adminAccount);
     }
 
     @Override
@@ -162,27 +154,29 @@ public class AccountDB extends SQLiteOpenHelper {
     public List<String> searchS_CourseList(String uName){
 
 
-            SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
 
-            //the query make sure that it is search for a student
-            String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_uNAME + " = \"" + uName + "\""+ " AND " +
-                            COLUMN_ROLE + " = \"" + "Student" + "\"";
-            Cursor cursor = db.rawQuery(query, null);
+        //the query make sure that it is search for a student
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_uNAME + " = \"" + uName + "\""+ " AND " +
+                COLUMN_ROLE + " = \"" + "Student" + "\"";
+        Cursor cursor = db.rawQuery(query, null);
 
-            ArrayList<Course> sessionList = new ArrayList<>();;
-            String[] tempA = null;
-            List<String> result = new ArrayList<>();
-            if(cursor.moveToFirst()){
-
-                tempA = convertStringToArray(cursor.getString(cursor.getColumnIndex(COLUMN_COURSE)));
-                result = Arrays.asList(tempA);
-
-
+        ArrayList<Course> sessionList = new ArrayList<>();;
+        String[] tempA = new String[]{};
+        List<String> result = new ArrayList<>();
+        if(cursor.moveToFirst()){
+            String tempStr = cursor.getString(5);
+            if(tempStr != null&&!tempStr.equals("[]")){
+                tempA = convertStringToArray(tempStr);
             }
-            cursor.close();
-            db.close();
+            result = Arrays.asList(tempA);
 
-            return result;
+
+        }
+        cursor.close();
+        db.close();
+
+        return result;
 
     }
 
@@ -196,6 +190,5 @@ public class AccountDB extends SQLiteOpenHelper {
         return i >= 0;
 
     }
-
 }
 

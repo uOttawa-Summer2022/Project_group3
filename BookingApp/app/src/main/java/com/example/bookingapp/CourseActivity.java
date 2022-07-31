@@ -130,13 +130,13 @@ public class CourseActivity extends AppCompatActivity {
                         }
 
                         course.getSessionList().add(session);
-                        Toast.makeText(CourseActivity.this, course.getSessionList().toString(), Toast.LENGTH_SHORT).show();
+
                         Collections.sort(course.getSessionList());
                         int a,b;
                         a = tempA[tempInt];
                         b = tempA[tempInt+1];
 
-                        List<Session> tempList = course.getSessionList().subList(a,a==b?a+1:b);
+                        List<Session> tempList = course.getSessionList().subList(a,b+1);
                         boolean addSession = cdb.overwriteSession(course.getCode(), stringToDays(day), tempList.toString());
 
                         if (addSession) {

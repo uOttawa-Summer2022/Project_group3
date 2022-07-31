@@ -58,11 +58,11 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
         String userName = intent[0].getStringExtra("userName");
         String role = intent[0].getStringExtra("role");
 
-        if(role.equals("Student")){
-            course = StudentActivity.course;
-        }else {
-            course = InstructorActivity.course;
-        }
+
+
+
+        course = InstructorActivity.course;
+
 
         cdb = new CourseDb(this);
 
@@ -96,7 +96,7 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
                         int[] tempA = course.getSessionIndex();
                         sessionList.remove(position);
                         sessionString = null;
-                        List<Session> tempList = sessionList.subList(tempA[tempInt],tempA[tempInt+1]);
+                        List<Session> tempList = sessionList.subList(tempA[tempInt],tempA[tempInt+1]-1);
                         cdb.overwriteSession(course.getCode(),tempDays, tempList.toString());
                         loadSessionListView();
                         Toast.makeText(SessionActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();

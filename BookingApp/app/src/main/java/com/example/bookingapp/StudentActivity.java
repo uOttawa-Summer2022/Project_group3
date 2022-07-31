@@ -1,6 +1,7 @@
 package com.example.bookingapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,13 +21,14 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
     TextView welcomeMsg, searchOrMy, courseSelectTxt;
     ArrayAdapter<String> allCourseAdapter;
     ListView courseListView;
-    Button searchByNBtn2, logOut2, unenrollBtn, enrolBtn, editCourseBtn, viewAll2, myCousrseBtn ;
-    List<String> courseStrList, myCourseStrList;
-    List<Course> courseList, myCourseList;
-    EditText  course_Name2;
+    Button searchByNBtn2, logOut2, unenrollBtn, enrolBtn, searchByDBtn, viewAll2, myCousrseBtn ;
+    List<String> courseStrList, myCourseStrList, currentC_StrList;
+    List<Course> courseList, myCourseList, currentCList;
+    EditText  course_Name2, course_day;
     static Course course;
     CourseDb cdb;
     AccountDB adb;
+    String fName, uName, role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +41,18 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
 
 
         course_Name2 = (EditText) findViewById(R.id.course_Name2);
+        course_day = (EditText) findViewById(R.id.course_day);
 
         courseListView = (ListView) findViewById(R.id.course_listView);
 
-        viewAll2 = (Button) findViewById(R.id.viewAll2) ;
         searchByNBtn2 = (Button) findViewById(R.id.searchByNBtn2);
+        searchByDBtn = (Button) findViewById(R.id.searchByDBtn);
+        viewAll2 = (Button) findViewById(R.id.viewAll2) ;
+        myCousrseBtn = (Button) findViewById(R.id.myCousrseBtn);
 
         logOut2 = (Button) findViewById(R.id.logOut2);
+
+
 
         cdb = new CourseDb(this);
 
@@ -55,14 +62,16 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         final Intent[] intent1 = {getIntent()};
 
         //welcome msg
-        String fName = intent1[0].getStringExtra("firstName");
-        String uName = intent1[0].getStringExtra("userName");
-        String role = intent1[0].getStringExtra("role");
+        fName = intent1[0].getStringExtra("firstName");
+        uName = intent1[0].getStringExtra("userName");
+        role = intent1[0].getStringExtra("role");
 
         courseStrList = cdb.findAllCourses();
         courseList = new ArrayList<>();
         myCourseStrList = adb.searchS_CourseList(uName);
         myCourseList = new ArrayList<>();
+
+
 
         String message = "Welcome " + fName + "/" + uName + "! You are logged in as " + role;
 
@@ -85,19 +94,22 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
             }
         }
 
-
+        currentC_StrList = courseStrList;
+        currentCList = courseList;
 
         //search by course name
         searchByNBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String cName = course_Name2.getText().toString().trim();
+                searchOrMy.setText("Search Result");
                 if(cName.equals("")){
-                    Toast.makeText(StudentActivity.this, "Empty Course!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(StudentActivity.this, "Invalid Input!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 ArrayList<String> tempList = new ArrayList<>();
-                for(String temp:courseStrList){
+                for(String temp: currentC_StrList){
                     if(temp.contains(cName)){
                         tempList.add(temp);
                     }
@@ -107,6 +119,24 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
             }
         });
 
+        searchByDBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String cDay = course_day.getText().toString().trim();
+                Days days1 = Days.stringToDays(cDay);
+                searchOrMy.setText("Search Result");
+                if(days1 == null) {
+                    Toast.makeText(StudentActivity.this, "Invalid Input!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<String> tempList = cdb.searchCourseByDays(days1);
+                viewCourses(tempList);
+
+
+
+
+            }
+        });
 
         //log out
         logOut2.setOnClickListener(new View.OnClickListener() {
@@ -121,13 +151,32 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
         viewAll2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                viewCourses(courseStrList);
+                course = null;
+                courseSelectTxt.setText("Course Code: ");
+                searchOrMy.setText("All Course");
+                courseListView.setBackgroundColor(Color.parseColor("#CEDDE3"));
+                currentC_StrList = courseStrList;
+                currentCList = courseList;
+                viewCourses(currentC_StrList);
 
 
             }
         });
+
+        myCousrseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                course = null;
+                courseSelectTxt.setText("Course Code: ");
+                searchOrMy.setText("My Course");
+                courseListView.setBackgroundColor(Color.rgb(235,239,74));
+                myCourseStrList = adb.searchS_CourseList(uName);
+                currentC_StrList = myCourseStrList;
+                currentCList = myCourseList;
+                viewCourses(currentC_StrList);
+            }
+        });
+
 
 
 
@@ -155,7 +204,8 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(StudentActivity.this, "qwerty", Toast.LENGTH_SHORT).show();
-
+                course = currentCList.get(position);
+                printCourse();
 
             }
         });
@@ -171,4 +221,48 @@ public class StudentActivity extends AppCompatActivity implements AdapterView.On
 
 
     }
+
+
+    public boolean enrollCourse(ArrayList<Course> myCourseList2, Course course2){
+
+        if(myCourseList2.contains(course2)){
+            Toast.makeText(this, "Course Have Already Been Enrolled.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        for(Course tempCourse:myCourseList2){
+            for(Session tempSession:tempCourse.getSessionList()){
+                for(Session tempSession2:course2.getSessionList()){
+                    if(tempSession.isOverlap(tempSession2)){
+                        return false;
+                    }
+                }
+            }
+        }
+
+        myCourseList2.add(course2);
+        myCourseStrList.add(course2.getName()+":"+course2.getCode());
+        adb.overwriteCourse(uName,myCourseList2.toString());
+
+        viewCourses(myCourseStrList);
+        return true;
+    }
+
+    public boolean unEnrollCourse(int pos){
+        if(currentC_StrList != myCourseStrList){
+            Toast.makeText(this, "You are not enrolled in this course", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        myCourseStrList.remove(pos);
+        currentC_StrList = myCourseStrList;
+        myCourseList.remove(pos);
+        adb.overwriteCourse(uName,myCourseStrList.toString());
+
+
+
+
+        return true;
+    }
+
+
 }

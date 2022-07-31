@@ -1,6 +1,8 @@
 package com.example.bookingapp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Course {
     private String code;
@@ -101,5 +103,20 @@ public class Course {
                 ", description='" + description + '\'' +
                 ", instructor='" + instructor + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return capacity == course.capacity && Objects.equals(code, course.code) && Objects.equals(name, course.name) && Arrays.equals(sessionIndex, course.sessionIndex) && Objects.equals(sessionList, course.sessionList) && Objects.equals(studentNameList, course.studentNameList) && Objects.equals(description, course.description) && Objects.equals(instructor, course.instructor);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(code, name, sessionList, studentNameList, capacity, description, instructor);
+        result = 31 * result + Arrays.hashCode(sessionIndex);
+        return result;
     }
 }
