@@ -48,4 +48,23 @@ public class EvaluatorTest {
     public void isValidUserNameFalse() {
         assertFalse(Evaluator.isValidUserName("eyaco078-"));
     }
+    @Test
+    public void isValidCapacityTrue() {
+        assertTrue(Evaluator.isValidCapacity(56));
+    }
+    @Test
+    public void isValidCapacityFalse() {
+        assertFalse(Evaluator.isValidCapacity(-1));
+    }
+    @Test
+    public void isValidDayTrue() {
+        assertTrue(Evaluator.isValidDay("Sunday"));
+    }
+    @Test
+    public void isValidDayFalse() {
+        assertFalse(Evaluator.isValidDay("abcDay"));
+    }
+
+
+
 }

@@ -27,6 +27,22 @@ public class Evaluator {
         return name.matches("[A-Za-z0-9]+");
 
     }
+    public static boolean isValidDay(String day) {
+        boolean flag=false;
+        for (Days d : Days.values()) {
+            if (d.name().equals(day)) {
+                flag= true;
+            }
+        }
+
+        return flag;
+    }
+    public static boolean isValidCapacity(int cp) {
+        if (cp > 0) {
+            return true;
+        }
+        return false;
+    }
 
 
 

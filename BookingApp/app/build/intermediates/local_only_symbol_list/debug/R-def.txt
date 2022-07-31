@@ -74,6 +74,7 @@ id sessionListView
 id sessionTxt
 id startTimeHour
 id startTimeMinute
+id studentBtn
 id textView
 id textView2
 id textView3
