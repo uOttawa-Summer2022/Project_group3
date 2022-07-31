@@ -48,7 +48,7 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
 
 
 
-        loadSessionListView();
+
 
 
 
@@ -58,17 +58,22 @@ public class SessionActivity extends AppCompatActivity implements AdapterView.On
         String userName = intent[0].getStringExtra("userName");
         String role = intent[0].getStringExtra("role");
 
-
-
-
-        course = InstructorActivity.course;
-
+        if(role.equals("Student")){
+            course = StudentActivity.course;
+        }else {
+            course = InstructorActivity.course;
+        }
 
         cdb = new CourseDb(this);
 
         sessionList = course.getSessionList();
 
         sessionListView.setOnItemClickListener(this);
+
+
+        loadSessionListView();
+
+        courseTitleTxt.setText(course.getName()+":"+course.getCode());
 
         addSessionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
